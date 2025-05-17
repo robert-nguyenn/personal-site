@@ -11,6 +11,6 @@ export const Home = () => {
 
     {/* Main Content */}
 
-    {/* Footer */}
+    {/* Footer */}  
   </div>;
 }
