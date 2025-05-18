@@ -49,18 +49,19 @@ export const StarBackground = () => {
   }
 
   const generateMeteors = () => {
-    const numberOfMeteors = Math.floor(Math.random() * 2) + 5; // Random number of meteors (1-2)
+    const numberOfMeteors = Math.floor(Math.random() * 2) + 1; // Slightly fewer meteors
 
     const newMeteors = [];
     for (let i = 0; i < numberOfMeteors; i++) {
       // Generate random position for each meteor
-      const startX = Math.random() * 70 + 15; // Keep away from extreme edges
+      // Adjust x range to favor the left side of the screen (0-40% instead of 15-85%)
+      const startX = Math.random() * 40; 
       const startY = Math.random() * 20; // Start from top portion of screen
       
-      // Random angle between 30 and 60 degrees
-      const angle = 45 + (Math.random() * 30 - 15);
-      const distance = 100 + Math.random() * 200;
-      const animationDuration = 0.8 + Math.random() * 1.2;
+      // Adjust angle to make sure meteors move rightward (30-50 degrees)
+      const angle = 30 + (Math.random() * 20);
+      const distance = 150 + Math.random() * 250; // Increase distance to cross more of the screen
+      const animationDuration = 2 + Math.random() * 3; // Slower animation (2-5 seconds)
       const delay = Math.random() * 0.5;
       
       newMeteors.push({
@@ -69,8 +70,8 @@ export const StarBackground = () => {
         y: startY,
         angle,
         distance,
-        size: Math.random() * 1 + 0.5, // Thinner
-        tailLength: Math.random() * 50 + 30, // Shorter tail
+        size: Math.random() * 1 + 1.5, // Thinner
+        tailLength: Math.random() * 120 + 80, // Longer tail (80-200px)
         delay,
         animationDuration,
         // Will be automatically removed when animation ends
