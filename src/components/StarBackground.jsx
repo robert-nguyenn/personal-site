@@ -95,6 +95,7 @@ export const StarBackground = () => {
             height: `${meteor.size}px`,
             background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
             boxShadow: '0 0 10px 0 rgba(255, 255, 255, 0.3)',
+            opacity: 0,
             borderRadius: '20px',
             transform: 'rotate(215deg)', // Fixed rotation instead of dynamic
             animation: `meteor ${meteor.animationDuration}s linear ${meteor.delay}s forwards`,
