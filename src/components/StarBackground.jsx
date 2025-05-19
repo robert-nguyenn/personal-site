@@ -42,30 +42,36 @@ export const StarBackground = () => {
   };
 
   const generateMeteors = () => {
-    const numberOfMeteors = Math.floor(Math.random() * 2) + 1; // Slightly fewer meteors
-    const newMeteors = [];
+    const numberOfMeteors = Math.floor(Math.random() * 2) + 1; // Random number of meteors (1-2)
 
+    const newMeteors = [];
     for (let i = 0; i < numberOfMeteors; i++) {
       // Generate random position for each meteor
-      const startX = Math.random() * 40; 
+      const startX = Math.random() * 40; // Keep away from extreme edges
       const startY = Math.random() * 20; // Start from top portion of screen
       
-      const animationDuration = 2 + Math.random() * 3; // Animation duration between 2-5 seconds
+      // Random angle between 30 and 60 degrees
+      const angle = 45 + (Math.random() * 30 - 15);
+      const distance = 100 + Math.random() * 200;
+      const animationDuration = 2 + Math.random() * 2;
       const delay = Math.random() * 0.5;
       
       newMeteors.push({
         id: `meteor-${Date.now()}-${i}`,
         x: startX,
         y: startY,
-        size: Math.random() * 1 + 1.5, // Thickness
-        tailLength: Math.random() * 120 + 80, // Length (80-200px)
+        angle,
+        distance,
+        size: Math.random() * 1 + 0.9, // Thinner
+        tailLength: Math.random() * 100 + 70, // Shorter tail
         delay,
         animationDuration,
+        // Will be automatically removed when animation ends
       });
     }
 
     setMeteors(prev => [...newMeteors]);
-  };
+  }
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -87,26 +93,19 @@ export const StarBackground = () => {
       {meteors.map((meteor) => (
         <div
           key={meteor.id}
-          className="meteor"
+          className="meteor animate-meteor"
           style={{
-            left: `${meteor.x}%`,
-            top: `${meteor.y}%`,
             width: `${meteor.tailLength}px`,
             height: `${meteor.size}px`,
+            left: `${meteor.x}%`,
+            top: `${meteor.y}%`,
+            animationDelay: meteor.delay,
+            animationDuration: meteor.animationDuration + "s",
             background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
             boxShadow: '0 0 10px 0 rgba(255, 255, 255, 0.3)',
-            opacity: 0,
             borderRadius: '20px',
-            transform: 'rotate(215deg)', // Fixed rotation instead of dynamic
-            animation: `meteor ${meteor.animationDuration}s linear ${meteor.delay}s forwards`,
-            animationFillMode: 'forwards',
-            transformOrigin: 'center',
             position: 'absolute',
             zIndex: 1,
-          }}
-          onAnimationEnd={() => {
-            // Remove this meteor after animation is done
-            setMeteors(prev => prev.filter(m => m.id !== meteor.id));
           }}
         />
       ))}
