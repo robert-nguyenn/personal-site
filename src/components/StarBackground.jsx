@@ -42,7 +42,7 @@ export const StarBackground = () => {
   };
 
   const generateMeteors = () => {
-    const numberOfMeteors = Math.floor(Math.random() * 2) + 1; // Random number of meteors (1-2)
+    const numberOfMeteors = Math.floor(Math.random() * 2) + 2; // Random number of meteors (1-2)
 
     const newMeteors = [];
     for (let i = 0; i < numberOfMeteors; i++) {
@@ -53,7 +53,7 @@ export const StarBackground = () => {
       // Random angle between 30 and 60 degrees
       const angle = 45 + (Math.random() * 30 - 15);
       const distance = 100 + Math.random() * 200;
-      const animationDuration = 2 + Math.random() * 2;
+      const animationDuration = 3 + Math.random() * 2;
       const delay = Math.random() * 0.5;
       
       newMeteors.push({
