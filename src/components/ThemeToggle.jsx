@@ -1,42 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sun, Moon } from "lucide-react";
-import { useEffect } from "react";
-import { cn } from "@/lib/utils"
+import { cn } from "../lib/utils";
 
 export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
       setIsDarkMode(true);
-      document.documentElement.classList.add("dark")
+      document.documentElement.classList.add("dark");
     } else {
       setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light");
     }
-  }, [])
+  }, []);
 
   const toggleTheme = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
       localStorage.setItem("theme", "light");
       setIsDarkMode(false);
     } else {
+      document.documentElement.classList.remove("light");
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
       setIsDarkMode(true);
     }
-  }
+  };
 
-  return ( 
-    <button onClick={toggleTheme} className={cn("fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300 focus:outline-hidden"
-    )}> 
-      {isDarkMode ? ( 
-        <Sun className="h-6 w-6 text-yellow-300"/> 
-      ) : (
-        <Moon className="h-6 w-6 text-blue-900"/>
-      )} 
-      </button>
+  if (!isMounted) return null;
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className={cn(
+        // Changed the positioning from top-right to bottom-right
+        "fixed z-50 right-5 bottom-5 sm:right-8 sm:bottom-8 p-2.5",
+        "rounded-full backdrop-blur-md transition-all duration-500",
+        "hover:scale-110 active:scale-95",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+        // Improved contrast and visual feedback
+        isDarkMode 
+          ? "bg-primary/20 hover:bg-primary/30 text-yellow-300 shadow-lg shadow-primary/20" 
+          : "bg-white/80 hover:bg-white text-blue-900 shadow-lg shadow-black/5"
+      )}
+      aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      <div className="relative">
+        {isDarkMode ? (
+          <Sun className="h-5 w-5 transition-all duration-300" />
+        ) : (
+          <Moon className="h-5 w-5 transition-all duration-300" />
+        )}
+        <span className={cn(
+          "absolute inset-0 rounded-full bg-white mix-blend-difference opacity-0",
+          "transition-opacity duration-300",
+          isDarkMode ? "opacity-0" : "opacity-0"
+        )}></span>
+      </div>
+    </button>
   );
-}
+};
