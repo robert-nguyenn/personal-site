@@ -11,7 +11,6 @@ export const AboutSection = () => {
       
       <div className="container max-w-5xl mx-auto relative z-10">
         <div className="mb-16 text-center">
-          <p className="text-primary font-medium mb-2">Get to know me</p>
           <h2 className="text-3xl md:text-5xl font-bold"> 
             About <span className="text-primary relative inline-block">
               Me
