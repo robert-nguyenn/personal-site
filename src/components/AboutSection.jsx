@@ -36,7 +36,7 @@ export const AboutSection = () => {
               I'm passionate about software development and always eager to learn new technologies. I enjoy working in a team environment and believe that collaboration is key to success. 
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+            <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center">
               <a href="#contact" className="cosmic-button group relative overflow-hidden">
                 <span className="relative z-10">Get In Touch</span>
                 <span className="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>

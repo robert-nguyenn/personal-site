@@ -1,6 +1,20 @@
 import { ArrowDown } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export const HeroSection = () => {  
+  const [scrollOpacity, setScrollOpacity] = useState(1);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      // Fade out scroll indicator based on scroll position
+      const opacity = 1 - Math.min(window.scrollY / 200, 1);
+      setScrollOpacity(opacity);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return ( 
     <section 
       id="hero" 
@@ -27,7 +41,7 @@ export const HeroSection = () => {
             </p>
 
             <div className="pt-6 opacity-0 animate-fade-in-delay-4 flex flex-wrap justify-center gap-4">
-              <a href="#project" className="cosmic-button group relative overflow-hidden">
+              <a href="#projects" className="cosmic-button group relative overflow-hidden">
                 <span className="relative z-10">View My Work</span>
                 <span className="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </a>
@@ -35,7 +49,10 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+        <div 
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce transition-opacity duration-500"
+          style={{ opacity: scrollOpacity }}
+        >
           <span className="text-sm text-muted-foreground mb-2 opacity-75">Scroll Down</span>
           <ArrowDown className="h-6 w-6 text-primary" /> 
         </div>
