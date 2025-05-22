@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Github, ExternalLink, Code, Database, Layout, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, ExternalLink, Code, Database, Layout, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "../lib/utils";
-
-// Rest of your code remains the same
 
 // Sample project data - replace with your actual projects
 const projects = [
@@ -15,8 +13,7 @@ const projects = [
     links: {
       demo: "https://example.com/demo",
       github: "https://github.com/yourusername/project"
-    },
-    category: "fullstack"
+    }
   },
   {
     id: 2,
@@ -27,8 +24,7 @@ const projects = [
     links: {
       demo: "https://example.com/demo",
       github: "https://github.com/yourusername/project"
-    },
-    category: "frontend"
+    }
   },
   {
     id: 3,
@@ -39,8 +35,7 @@ const projects = [
     links: {
       demo: "https://example.com/demo",
       github: "https://github.com/yourusername/project"
-    },
-    category: "backend"
+    }
   },
   {
     id: 4,
@@ -51,8 +46,7 @@ const projects = [
     links: {
       demo: "https://example.com/demo",
       github: "https://github.com/yourusername/project"
-    },
-    category: "fullstack"
+    }
   },
   {
     id: 5,
@@ -63,8 +57,7 @@ const projects = [
     links: {
       demo: "https://example.com/demo",
       github: "https://github.com/yourusername/project"
-    },
-    category: "frontend"
+    }
   },
   {
     id: 6,
@@ -75,82 +68,129 @@ const projects = [
     links: {
       demo: "https://example.com/demo",
       github: "https://github.com/yourusername/project"
-    },
-    category: "backend"
+    }
   }
 ];
 
-const categoryIcons = {
-  all: <Layout className="h-5 w-5" />,
-  frontend: <Code className="h-5 w-5" />,
-  backend: <Database className="h-5 w-5" />,
-  fullstack: <></>, // Using a custom for fullstack
-};
-
 export const ProjectsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const carouselRef = useRef(null);
   const totalProjects = projects.length;
 
-  const nextProject = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev === totalProjects - 1 ? 0 : prev + 1));
-    setTimeout(() => setIsAnimating(false), 500);
+  // Get visible projects with proper indexing
+  const getVisibleProjects = () => {
+    const visibleProjects = [];
+    for (let i = -1; i <= 3; i++) {
+      const index = (activeIndex + i + totalProjects) % totalProjects;
+      visibleProjects.push({
+        ...projects[index],
+        position: i
+      });
+    }
+    return visibleProjects;
   };
 
-  const prevProject = () => {
+  const handleNext = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setCurrentIndex((prev) => (prev === 0 ? totalProjects - 1 : prev - 1));
-    setTimeout(() => setIsAnimating(false), 500);
+    setActiveIndex((prev) => (prev + 1) % totalProjects);
+    setTimeout(() => setIsAnimating(false), 600);
   };
 
-  // Auto-rotation for carousel (optional)
+  const handlePrev = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveIndex((prev) => (prev - 1 + totalProjects) % totalProjects);
+    setTimeout(() => setIsAnimating(false), 600);
+  };
+
+  // Auto-rotation for carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      nextProject();
+      if (!isAnimating) {
+        handleNext();
+      }
     }, 8000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [activeIndex, isAnimating]);
 
-  // Generate indicator dots
   const renderDots = () => {
-    return projects.map((_, index) => (
-      <button
-        key={index}
-        onClick={() => {
-          if (isAnimating) return;
-          setIsAnimating(true);
-          setCurrentIndex(index);
-          setTimeout(() => setIsAnimating(false), 500);
-        }}
-        className={cn(
-          "w-3 h-3 rounded-full transition-all duration-300",
-          currentIndex === index 
-            ? "bg-primary scale-125 shadow-lg shadow-primary/30" 
-            : "bg-primary/30 hover:bg-primary/50"
-        )}
-        aria-label={`Go to project ${index + 1}`}
-      />
-    ));
+    const dots = [];
+    for (let i = 0; i < totalProjects; i++) {
+      dots.push(
+        <button
+          key={i}
+          onClick={() => {
+            if (isAnimating) return;
+            setIsAnimating(true);
+            setActiveIndex(i);
+            setTimeout(() => setIsAnimating(false), 600);
+          }}
+          className={cn(
+            "w-3 h-3 rounded-full transition-all duration-300",
+            activeIndex === i
+              ? "bg-primary scale-125 shadow-lg shadow-primary/30" 
+              : "bg-primary/30 hover:bg-primary/50"
+          )}
+          aria-label={`Go to project ${i + 1}`}
+        />
+      );
+    }
+    return dots;
   };
 
-  // Calculate indexes for visible projects
-  const getVisibleIndexes = () => {
-    const prevIndex = currentIndex === 0 ? totalProjects - 1 : currentIndex - 1;
-    const nextIndex = currentIndex === totalProjects - 1 ? 0 : currentIndex + 1;
-    return { prevIndex, currentIndex, nextIndex };
-  };
+  const visibleProjects = getVisibleProjects();
 
-  const { prevIndex, nextIndex } = getVisibleIndexes();
+  const getCardStyle = (position) => {
+    // Improved transition curve for smoother movement
+    const baseTransition = "all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)";
+    
+    switch (position) {
+      case -1:
+        // Left card with enhanced styling  
+        return {
+          transform: "translateX(-80%) rotateY(25deg) scale(0.85)",
+          opacity: 0.85,
+          zIndex: 2,
+          filter: "brightness(0.85) contrast(0.95)",
+          transition: baseTransition,
+          boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.3)"
+        };
+      case 0:
+        // Center card with enhanced styling
+        return {
+          transform: "translateX(0) rotateY(0) scale(1.05)",
+          opacity: 1,
+          zIndex: 10,
+          filter: "brightness(1) contrast(1.05)",
+          boxShadow: "0 30px 60px -15px rgba(94, 53, 177, 0.4), 0 0 30px rgba(255, 255, 255, 0.1)",
+          transition: baseTransition
+        };
+      case 1:
+        // Right card with enhanced styling
+        return {
+          transform: "translateX(80%) rotateY(-25deg) scale(0.85)",
+          opacity: 0.85,
+          zIndex: 2,
+          filter: "brightness(0.85) contrast(0.95)",
+          transition: baseTransition,
+          boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.3)"
+        };
+      default:
+        // Hidden cards
+        return {
+          transform: position < -1 ? "translateX(-150%) scale(0.5)" : "translateX(150%) scale(0.5)",
+          opacity: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          transition: baseTransition
+        };
+    }
+  };
 
   return (
     <section id="projects" className="py-24 px-4 relative overflow-hidden">
-      {/* Background accents remain */}
-      
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
             Featured <span className="text-primary relative inline-block">
@@ -163,145 +203,164 @@ export const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* 3D Carousel for Projects */}
-        <div className="relative h-[600px] md:h-[500px] mb-10">
-          <div 
-            ref={carouselRef}
-            className="relative w-full h-full perspective-1000"
-          >
-            {/* Main (Current) Project */}
-            <div 
-              className={cn(
-                "absolute inset-0 flex transition-all duration-500 ease-out",
-                "transform-preserve-3d backface-visibility-hidden"
-              )}
-            >
-              <div className="w-full md:w-4/5 lg:w-3/4 mx-auto">
-                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-xl overflow-hidden shadow-2xl border border-primary/20 h-full transition-transform duration-500 transform hover:scale-[1.02]">
-                  <div className="flex flex-col md:flex-row h-full">
-                    {/* Project Image */}
-                    <div className="md:w-1/2 h-[250px] md:h-full relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent z-10"></div>
-                      <img 
-                        src={projects[currentIndex].image} 
-                        alt={projects[currentIndex].title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-4 right-4 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm py-1 px-2 rounded text-xs font-medium text-primary">
-                        {projects[currentIndex].category.toUpperCase()}
-                      </div>
-                    </div>
+        {/* Enhanced 3D Project Carousel */}
+        <div className="relative h-[600px] mb-10 perspective-[1200px] overflow-visible">
+          <div className="relative w-full h-full flex justify-center items-center">
+            {visibleProjects.map((project, index) => {
+              const isClickable = project.position === -1 || project.position === 1;
+              // Determine the category for styling
+              const category = project.tags[0] || "other";
+              const categoryColor = getCategoryColor(category);
+
+              return (
+                <div 
+                  key={`${project.id}-${activeIndex}`} 
+                  className={cn(
+                    "absolute w-full md:w-[420px] h-[520px]",
+                    isClickable ? "cursor-pointer" : ""
+                  )}
+                  style={getCardStyle(project.position)}
+                  onClick={() => {
+                    if (project.position === -1) handlePrev();
+                    if (project.position === 1) handleNext();
+                  }}
+                >
+                  {/* Modern, glossy card styling */}
+                  <div className="relative group rounded-2xl overflow-hidden h-full transform transition-all">
+                    {/* Card background with gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 to-gray-800/95 dark:from-gray-900/98 dark:to-gray-800/98 backdrop-blur-sm z-0"></div>
                     
-                    {/* Project Details */}
-                    <div className="md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-2xl font-bold mb-3">{projects[currentIndex].title}</h3>
-                        <p className="text-muted-foreground mb-5">{projects[currentIndex].description}</p>
+                    {/* Subtle glow effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/30 to-purple-500/30 rounded-2xl blur opacity-30 group-hover:opacity-70 transition duration-1000 z-0"></div>
+                    
+                    {/* Card content container */}
+                    <div className="relative z-10 h-full flex flex-col border border-white/10 rounded-2xl overflow-hidden bg-white/[0.01] backdrop-blur-sm">
+                      {/* Project Image with improved styling */}
+                      <div className="h-[240px] relative overflow-hidden">
+                        {/* Gradient overlay with animated shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shine-effect z-20"></div>
                         
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {projects[currentIndex].tags.map((tag, index) => (
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        />
+                        
+                        {/* Title overlay with improved styling */}
+                        <div className="absolute bottom-0 left-0 w-full p-5 z-20">
+                          <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md">
+                            {project.title}
+                          </h3>
+                        </div>
+                      </div>
+                      
+                      {/* Project Details with improved styling */}
+                      <div className="p-6 flex-1 flex flex-col text-white">
+                        <p className="text-gray-300 text-sm mb-5 line-clamp-3 leading-relaxed">
+                          {project.description}
+                        </p>
+                        
+                        {/* Tags with improved styling */}
+                        <div className="flex flex-wrap gap-2 mb-5 mt-auto">
+                          {project.tags.slice(0, 4).map((tag, tagIndex) => (
                             <span 
-                              key={index} 
-                              className="inline-block px-2 py-1 text-xs font-medium bg-primary/15 text-primary rounded-full"
+                              key={tagIndex} 
+                              className="inline-block px-2.5 py-1 text-xs font-medium bg-white/10 border border-white/5 text-gray-200 rounded-md"
                             >
                               {tag}
                             </span>
                           ))}
+                          {project.tags.length > 4 && (
+                            <span className="inline-block px-2.5 py-1 text-xs font-medium bg-white/5 text-gray-300 rounded-md">
+                              +{project.tags.length - 4}
+                            </span>
+                          )}
                         </div>
-                      </div>
-                      
-                      {/* Links */}
-                      <div className="flex gap-3 mt-auto">
-                        <a 
-                          href={projects[currentIndex].links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 rounded-lg border border-primary/30 text-primary hover:bg-primary/10 transition-colors flex items-center gap-2 font-medium"
-                        >
-                          <Github className="h-4 w-4" />
-                          <span>GitHub</span>
-                        </a>
-                        <a 
-                          href={projects[currentIndex].links.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-lg shadow-primary/20"
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                          <span>Live Demo</span>
-                        </a>
+                        
+                        {/* Links - only on center card with improved styling */}
+                        {project.position === 0 && (
+                          <div className="flex gap-3 mt-2">
+                            <a 
+                              href={project.links.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-4 py-2 flex-1 rounded-lg border border-white/20 text-white hover:bg-white/10 transition-all flex items-center justify-center gap-2 font-medium text-sm backdrop-blur-sm"
+                            >
+                              <Github className="h-4 w-4" />
+                              <span>GitHub</span>
+                            </a>
+                            <a 
+                              href={project.links.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-4 py-2 flex-1 rounded-lg bg-primary hover:bg-primary/90 text-white transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20 text-sm font-medium"
+                            >
+                              <ExternalLink className="h-4 w-4" />
+                              <span>Live Demo</span>
+                            </a>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            {/* Side Projects (Preview) */}
-            <div 
-              className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 w-1/3 h-4/5 opacity-50 transition-all duration-500 hidden lg:block"
-              style={{ transform: `translateY(-50%) translateX(-30%) rotateY(45deg)` }}
-            >
-              <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-xl h-full border border-primary/10">
-                <img 
-                  src={projects[prevIndex].image} 
-                  alt={projects[prevIndex].title}
-                  className="w-full h-full object-cover opacity-80"
-                />
-              </div>
-            </div>
-            
-            <div 
-              className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-1/3 h-4/5 opacity-50 transition-all duration-500 hidden lg:block"
-              style={{ transform: `translateY(-50%) translateX(30%) rotateY(-45deg)` }}
-            >
-              <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-xl h-full border border-primary/10">
-                <img 
-                  src={projects[nextIndex].image} 
-                  alt={projects[nextIndex].title}
-                  className="w-full h-full object-cover opacity-80"
-                />
-              </div>
-            </div>
+              );
+            })}
           </div>
           
-          {/* Navigation Arrows */}
+          {/* Improved navigation controls */}
           <button 
-            onClick={prevProject}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-primary/20"
+            onClick={handlePrev}
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 group"
             aria-label="Previous project"
+            disabled={isAnimating}
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-6 w-6 group-hover:scale-110 transition-transform" />
           </button>
           
           <button 
-            onClick={nextProject}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-primary/20"
+            onClick={handleNext}
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 group"
             aria-label="Next project"
+            disabled={isAnimating}
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-6 w-6 group-hover:scale-110 transition-transform" />
           </button>
         </div>
         
-        {/* Dot Indicators */}
+        {/* Improved dot indicators */}
         <div className="flex justify-center gap-3 mt-6">
           {renderDots()}
         </div>
 
-        {/* All Projects Button */}
+        {/* Improved All Projects Button */}
         <div className="mt-12 text-center">
           <a 
             href="https://github.com/yourusername" 
             target="_blank"
             rel="noopener noreferrer"
-            className="cosmic-button group"
+            className="cosmic-button group px-8 py-3 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-white font-medium transition-all hover:border-primary/50"
           >
-            <span className="relative z-10">View All Projects</span>
-            <span className="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+            <span className="relative z-10 flex items-center gap-2">
+              <span>View All Projects</span>
+              <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+            <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-purple-500/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
           </a>
         </div>
       </div>
     </section>
   );
 };
+
+// Helper function to get color based on category tag
+function getCategoryColor(category) {
+  const lowerCategory = category.toLowerCase();
+  if (lowerCategory.includes('react') || lowerCategory.includes('vue')) return 'blue';
+  if (lowerCategory.includes('node') || lowerCategory.includes('express')) return 'green';
+  if (lowerCategory.includes('aws') || lowerCategory.includes('cloud')) return 'orange';
+  if (lowerCategory.includes('mongo') || lowerCategory.includes('sql')) return 'yellow';
+  if (lowerCategory.includes('next') || lowerCategory.includes('typescript')) return 'indigo';
+  return 'primary';
+}

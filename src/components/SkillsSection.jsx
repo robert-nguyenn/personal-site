@@ -259,7 +259,7 @@ export const SkillsSection = () => {
           </div>
 
           {/* Skills summary stats with enhanced design */}
-          <div className="mt-16 bg-white/80 dark:bg-gray-900/90 p-8 rounded-xl backdrop-blur-lg border border-primary/20 shadow-xl">
+          <div className="mt-16 bg-dark/80 dark:bg-gray-900/90 p-8 rounded-xl backdrop-blur-lg border border-primary/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
                 <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
