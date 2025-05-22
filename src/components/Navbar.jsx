@@ -41,8 +41,10 @@ export const Navbar = () => {
 
   return ( 
     <nav className={cn(
-      "fixed w-full z-40 transition-all duration-300", 
-      isScrolled ? "bg-background/80 backdrop-blur-md shadow-md py-3" : "py-5"
+      "fixed w-full z-40 transition-all duration-500", 
+      isScrolled 
+        ? "bg-background/80 backdrop-blur-xl shadow-md py-3 border-b border-primary/10" 
+        : "py-5"
     )}>
       <div className="container flex items-center justify-between">
         <a 
@@ -56,8 +58,8 @@ export const Navbar = () => {
             <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300"></div>
           </div>
           <span className="text-primary relative overflow-hidden">
-            Portfolio
-            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary/70 group-hover:w-full transition-all duration-300 delay-100"></div>
+            <span className="relative z-10">Portfolio</span>
+            <span className="absolute inset-0 bg-primary/10 rounded-lg filter blur-md -z-10 scale-0 group-hover:scale-100 transition-all duration-300"></span>
           </span>
         </a>
 
@@ -102,7 +104,7 @@ export const Navbar = () => {
         {/* mobile nav menu */}
         <div 
           className={cn(
-            "fixed inset-0 bg-background/70 z-40 flex flex-col items-center justify-center",
+            "fixed inset-0 bg-background/90 backdrop-blur-xl z-40 flex flex-col items-center justify-center",
             "transition-all duration-300 md:hidden",
             isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}

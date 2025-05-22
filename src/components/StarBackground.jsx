@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 
-// id, size, x, y, opacity, animationDuration
-// id, size, x, y, delay, animationDuration
-
 export const StarBackground = () => {
   const [stars, setStars] = useState([]);
   const [meteors, setMeteors] = useState([]);
 
   useEffect(() => {
     generateStars();
-    generateMeteors();
+    
+    // Initial delay before first meteor
+    const initialTimeout = setTimeout(() => {
+      generateMeteors();
+    }, 2000);
+    
+    // Increased interval between meteor batches (from 4000ms to 8000ms)
+    const meteorInterval = setInterval(() => {
+      generateMeteors();
+    }, 8000);
 
     const handleResize = () => {
       generateStars();
@@ -17,12 +23,16 @@ export const StarBackground = () => {
 
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearInterval(meteorInterval);
+      clearTimeout(initialTimeout);
+    }
   }, []);
 
   const generateStars = () => {
     const numberOfStars = Math.floor(
-      (window.innerWidth * window.innerHeight) / 10000
+      (window.innerWidth * window.innerHeight) / 8000
     );
 
     const newStars = [];
@@ -35,6 +45,7 @@ export const StarBackground = () => {
         y: Math.random() * 100,
         opacity: Math.random() * 0.5 + 0.5,
         animationDuration: Math.random() * 4 + 2,
+        blur: Math.random() < 0.2 ? `blur-${Math.ceil(Math.random() * 2)}` : '',
       });
     }
 
@@ -42,35 +53,38 @@ export const StarBackground = () => {
   };
 
   const generateMeteors = () => {
-    const numberOfMeteors = Math.floor(Math.random() * 2) + 2; // Random number of meteors (1-2)
+    // Reduce number of meteors - only show 1 or 2 at a time (previously starting at 1)
+    // 70% chance of 1 meteor, 30% chance of 2 meteors
+    const numberOfMeteors = Math.random() < 0.7 ? 1 : 2;
 
     const newMeteors = [];
     for (let i = 0; i < numberOfMeteors; i++) {
       // Generate random position for each meteor
-      const startX = Math.random() * 40; // Keep away from extreme edges
+      const startX = Math.random() * 40 + 30; // Keep away from extreme edges
       const startY = Math.random() * 20; // Start from top portion of screen
       
-      // Random angle between 30 and 60 degrees
-      const angle = 45 + (Math.random() * 30 - 15);
-      const distance = 100 + Math.random() * 200;
-      const animationDuration = 3 + Math.random() * 2;
-      const delay = Math.random() * 0.5;
+      const animationDuration = 2 + Math.random() * 3;
+      const delay = Math.random() * 1.5;
       
       newMeteors.push({
         id: `meteor-${Date.now()}-${i}`,
         x: startX,
         y: startY,
-        angle,
-        distance,
-        size: Math.random() * 1 + 0.9, // Thinner
-        tailLength: Math.random() * 100 + 70, // Shorter tail
+        size: Math.random() * 1 + 0.8, 
+        tailLength: Math.random() * 120 + 80,
         delay,
         animationDuration,
-        // Will be automatically removed when animation ends
       });
     }
 
-    setMeteors(prev => [...newMeteors]);
+    setMeteors(prev => [...prev, ...newMeteors]);
+    
+    // After animation fully completes (duration + delay), remove meteors
+    setTimeout(() => {
+      setMeteors(prev => prev.filter(m => 
+        !newMeteors.some(nm => nm.id === m.id)
+      ));
+    }, 15000); // Longer timeout to ensure full animation completion
   }
 
   return (
@@ -78,7 +92,7 @@ export const StarBackground = () => {
       {stars.map((star) => (
         <div
           key={star.id}
-          className="star animate-pulse-subtle"
+          className={`star animate-pulse-subtle ${star.blur}`}
           style={{
             width: star.size + "px",
             height: star.size + "px",
@@ -93,14 +107,12 @@ export const StarBackground = () => {
       {meteors.map((meteor) => (
         <div
           key={meteor.id}
-          className="meteor animate-meteor"
+          className="animate-meteor"
           style={{
             width: `${meteor.tailLength}px`,
             height: `${meteor.size}px`,
             left: `${meteor.x}%`,
             top: `${meteor.y}%`,
-            animationDelay: meteor.delay,
-            animationDuration: meteor.animationDuration + "s",
             background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
             boxShadow: '0 0 10px 0 rgba(255, 255, 255, 0.3)',
             borderRadius: '20px',
@@ -109,6 +121,9 @@ export const StarBackground = () => {
           }}
         />
       ))}
+      
+      {/* Gradient overlay at bottom for depth effect - especially nice in dark mode */}
+      <div className="absolute bottom-0 left-0 w-full h-[20vh] bg-gradient-to-t from-background/50 to-transparent pointer-events-none"></div>
     </div>
   );
 };

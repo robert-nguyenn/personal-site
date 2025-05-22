@@ -99,6 +99,11 @@
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  /* Improved text selection styling */
+  ::selection {
+    @apply bg-primary/20 text-foreground;
+  }
 }
 
 
@@ -129,20 +134,36 @@
 }
 
 @utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30;
 }
 
 @utility gradient-border {
-  @apply relative rounded-md;
+  @apply relative rounded-xl overflow-hidden;
   background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
   background-clip: padding-box;
   border: 1px solid transparent;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    margin: -1px;
+    background: linear-gradient(130deg, rgba(167, 139, 250, 0.3), transparent, rgba(167, 139, 250, 0.2));
+    border-radius: inherit;
+    transition: opacity 0.3s ease;
+  }
 }
 
 @utility cosmic-button {
   @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium
-    transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-    hover:scale-105 active:scale-95;
+    transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.6)]
+    hover:scale-105 active:scale-95 border border-primary relative overflow-hidden;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-primary to-indigo-400;
 }
 
 @utility star {
