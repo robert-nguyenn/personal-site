@@ -23,14 +23,17 @@ export const AboutSection = () => {
                 Get In Touch
               </a>
 
-              <a href="#contact" className="cosmic-button">
-                Get In Touch
+              <a href="/resume.pdf" download className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300">
+                Download Resume
               </a>
+
             </div>
           </div>
 
-          <div>
-
+          <div className="grid gird-cols-1 gap-6">
+            <div className="gradient-border p-6 card-hover"></div>
+            <div className="gradient-border p-6 card-hover"></div>
+            <div className="gradient-border p-6 card-hover"></div>
           </div>
         </div>
       </div>
