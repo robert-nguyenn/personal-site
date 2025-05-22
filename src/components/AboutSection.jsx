@@ -1,3 +1,5 @@
+import { Briefcase, Code, User } from "lucide-react";
+
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
@@ -31,9 +33,45 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid gird-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover"></div>
-            <div className="gradient-border p-6 card-hover"></div>
-            <div className="gradient-border p-6 card-hover"></div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Code className="h-6 text-primary"/>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-lg">Web Development</h4>
+                  <p className="text-muted-foreground">
+                    I specialize in building responsive and user-friendly web applications using modern frameworks and technologies.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <User className="h-6 text-primary"/>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-lg">User Experience</h4>
+                  <p className="text-muted-foreground">
+                    I focus on creating intuitive and engaging user experiences that enhance usability and satisfaction.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Briefcase className="h-6 text-primary"/>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-lg">Professional Experience</h4>
+                  <p className="text-muted-foreground">
+                    I have worked on various projects, collaborating with cross-functional teams to deliver high-quality software solutions.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
