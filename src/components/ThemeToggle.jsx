@@ -42,20 +42,20 @@ export const ThemeToggle = () => {
         // Changed the positioning from top-right to bottom-right
         "fixed z-50 right-5 bottom-5 sm:right-8 sm:bottom-8 p-2.5",
         "rounded-full backdrop-blur-md transition-all duration-500",
-        "hover:scale-110 active:scale-95 hover:ring-5 hover:ring-primary",
+        "hover:scale-110 active:scale-95 hover:ring-5",
         "focus:outline-none ",
         // Improved contrast and visual feedback
         isDarkMode 
-          ? "bg-primary/20 hover:bg-primary/30 text-yellow-300 shadow-lg shadow-primary/20" 
-          : "bg-white/80 hover:bg-white text-blue-900 shadow-lg shadow-black/5"
+          ? "bg-primary/45 hover:bg-primary/25 text-yellow-300 hover:ring-yellow-500" 
+          : "bg-white hover:ring-blue-500"
       )}
       aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
       <div className="relative">
         {isDarkMode ? (
-          <Sun className="h-5 w-5 transition-all duration-300" />
+          <Sun className="h-5 w-5 transition-all fill-current duration-300" />
         ) : (
-          <Moon className="h-5 w-5 transition-all duration-300" />
+          <Moon className="h-5 w-5 text-blue-900 transition-all duration-300" />
         )}
         <span className={cn(
           "absolute inset-0 rounded-full bg-white mix-blend-difference opacity-0",
