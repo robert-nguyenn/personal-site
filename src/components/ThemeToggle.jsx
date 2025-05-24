@@ -55,7 +55,7 @@ export const ThemeToggle = () => {
         {isDarkMode ? (
           <Sun className="h-5 w-5 transition-all fill-current duration-300" />
         ) : (
-          <Moon className="h-5 w-5 text-blue-900 transition-all duration-300" />
+          <Moon className="h-5 w-5 text-blue-700 transition-all duration-300" />
         )}
       </div>
     </button>
