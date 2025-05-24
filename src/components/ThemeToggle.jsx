@@ -42,8 +42,8 @@ export const ThemeToggle = () => {
         // Changed the positioning from top-right to bottom-right
         "fixed z-50 right-5 bottom-5 sm:right-8 sm:bottom-8 p-2.5",
         "rounded-full backdrop-blur-md transition-all duration-500",
-        "hover:scale-110 active:scale-95",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+        "hover:scale-110 active:scale-95 hover:ring-5 hover:ring-primary",
+        "focus:outline-none ",
         // Improved contrast and visual feedback
         isDarkMode 
           ? "bg-primary/20 hover:bg-primary/30 text-yellow-300 shadow-lg shadow-primary/20" 
