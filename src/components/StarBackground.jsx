@@ -12,10 +12,9 @@ export const StarBackground = () => {
       generateMeteors();
     }, 2000);
     
-    // Increased interval between meteor batches (from 4000ms to 8000ms)
     const meteorInterval = setInterval(() => {
       generateMeteors();
-    }, 8000);
+    }, 10000);
 
     const handleResize = () => {
       generateStars();
@@ -32,7 +31,7 @@ export const StarBackground = () => {
 
   const generateStars = () => {
     const numberOfStars = Math.floor(
-      (window.innerWidth * window.innerHeight) / 8000
+      (window.innerWidth * window.innerHeight) / 5000
     );
 
     const newStars = [];
@@ -43,7 +42,7 @@ export const StarBackground = () => {
         size: Math.random() * 3 + 1,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        opacity: Math.random() * 0.5 + 0.5,
+        opacity: Math.random(),
         animationDuration: Math.random() * 4 + 2,
         blur: Math.random() < 0.2 ? `blur-${Math.ceil(Math.random() * 2)}` : '',
       });
@@ -53,7 +52,6 @@ export const StarBackground = () => {
   };
 
   const generateMeteors = () => {
-    // Reduce number of meteors - only show 1 or 2 at a time (previously starting at 1)
     // 70% chance of 1 meteor, 30% chance of 2 meteors
     const numberOfMeteors = Math.random() < 0.7 ? 1 : 2;
 
