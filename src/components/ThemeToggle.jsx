@@ -51,17 +51,12 @@ export const ThemeToggle = () => {
       )}
       aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
-      <div className="relative">
+      <div>
         {isDarkMode ? (
           <Sun className="h-5 w-5 transition-all fill-current duration-300" />
         ) : (
           <Moon className="h-5 w-5 text-blue-900 transition-all duration-300" />
         )}
-        <span className={cn(
-          "absolute inset-0 rounded-full bg-white mix-blend-difference opacity-0",
-          "transition-opacity duration-300",
-          isDarkMode ? "opacity-0" : "opacity-0"
-        )}></span>
       </div>
     </button>
   );
