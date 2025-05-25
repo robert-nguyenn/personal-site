@@ -79,6 +79,8 @@ export const StarBackground = () => {
   }
 
   return (
+    // inset-0: Shortcut for top: 0; right: 0; bottom: 0; left: 0 — full screen
+    
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {stars.map((star) => (
         <div
@@ -104,8 +106,8 @@ export const StarBackground = () => {
             height: `${meteor.size}px`,
             left: `${meteor.x}%`,
             top: `${meteor.y}%`,
-            background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
-            boxShadow: '0 0 10px 0 rgba(255, 255, 255, 0.3)',
+            background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
+            boxShadow: '0 0 10px 0 rgba(255, 255, 255, 0.4)',
             borderRadius: '20px',
             position: 'absolute',
             zIndex: 1,
