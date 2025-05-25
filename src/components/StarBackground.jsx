@@ -76,13 +76,6 @@ export const StarBackground = () => {
     }
 
     setMeteors(prev => [...prev, ...newMeteors]);
-    
-    // After animation fully completes (duration + delay), remove meteors
-    setTimeout(() => {
-      setMeteors(prev => prev.filter(m => 
-        !newMeteors.some(nm => nm.id === m.id)
-      ));
-    }, 15000); // Longer timeout to ensure full animation completion
   }
 
   return (
