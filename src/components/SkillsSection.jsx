@@ -168,20 +168,20 @@ export const SkillsSection = () => {
             </p>
           </div>
 
-          {/* Category Filters with improved icons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
             <button
               onClick={() => setActiveCategory("all")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "all"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <LayoutGrid className={`w-4 h-4 ${activeCategory === "all" ? "text-white" : "text-purple-400"}`} strokeWidth={2} />
+                  <LayoutGrid className="w-4 h-4 text-purple-400" strokeWidth={2} />
                 </div>
                 All Skills
               </span>
@@ -189,15 +189,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("frontend")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "frontend"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <FileCode className={`w-4 h-4 ${activeCategory === "frontend" ? "text-white" : "text-blue-400"}`} strokeWidth={2} />
+                  <FileCode className="w-4 h-4 text-blue-400" strokeWidth={2} />
                 </div>
                 Frontend
               </span>
@@ -205,15 +205,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("backend")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "backend"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <ServerCog className={`w-4 h-4 ${activeCategory === "backend" ? "text-white" : "text-green-400"}`} strokeWidth={2} />
+                  <ServerCog className="w-4 h-4 text-green-400" strokeWidth={2} />
                 </div>
                 Backend
               </span>
@@ -221,15 +221,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("database")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "database"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <Database className={`w-4 h-4 ${activeCategory === "database" ? "text-white" : "text-orange-400"}`} strokeWidth={2} />
+                  <Database className="w-4 h-4 text-orange-400" strokeWidth={2} />
                 </div>
                 Database
               </span>
@@ -237,15 +237,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("datascience")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "datascience"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <BarChart3 className={`w-4 h-4 ${activeCategory === "datascience" ? "text-white" : "text-cyan-400"}`} strokeWidth={2} />
+                  <BarChart3 className="w-4 h-4 text-cyan-400" strokeWidth={2} />
                 </div>
                 Data Science
               </span>
@@ -253,15 +253,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("devops")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "devops"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <Cpu className={`w-4 h-4 ${activeCategory === "devops" ? "text-white" : "text-red-400"}`} strokeWidth={2} />
+                  <Cpu className="w-4 h-4 text-red-400" strokeWidth={2} />
                 </div>
                 DevOps
               </span>
@@ -269,15 +269,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("testing")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "testing"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <TestTube className={`w-4 h-4 ${activeCategory === "testing" ? "text-white" : "text-yellow-400"}`} strokeWidth={2} />
+                  <TestTube className="w-4 h-4 text-yellow-400" strokeWidth={2} />
                 </div>
                 Testing
               </span>
@@ -285,15 +285,15 @@ export const SkillsSection = () => {
             <button
               onClick={() => setActiveCategory("systems")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
+                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
                 activeCategory === "systems"
-                  ? "bg-primary text-white shadow-md shadow-primary/30"
-                  : "bg-card hover:bg-card/80 border border-border"
+                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
+                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
               )}
             >
               <span className="flex items-center gap-2">
                 <div className="flex items-center justify-center w-5 h-5">
-                  <Binary className={`w-4 h-4 ${activeCategory === "systems" ? "text-white" : "text-indigo-400"}`} strokeWidth={2} />
+                  <Binary className="w-4 h-4 text-indigo-400" strokeWidth={2} />
                 </div>
                 Systems
               </span>
