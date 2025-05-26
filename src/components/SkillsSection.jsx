@@ -1,14 +1,10 @@
-// At the top of your file, import additional icons
 import React, { useState, useEffect } from "react";
 import { 
   LayoutGrid, 
   FileCode, 
   ServerCog,
   Database, 
-  BarChart3, 
-  Cpu, 
-  TestTube,
-  Binary,
+  Cpu,
   ChevronDown
 } from "lucide-react";
 import { cn } from "../lib/utils";
@@ -16,24 +12,26 @@ import { cn } from "../lib/utils";
 // Define the skills data with icon imports
 const skills = [
   // Frontend skills
-  { name: "React", level: 95, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "JavaScript", level: 93, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "TypeScript", level: 90, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { name: "HTML/CSS", level: 95, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { name: "Next.js", level: 89, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-  { name: "Tailwind CSS", level: 92, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "React", level: 91, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "JavaScript", level: 92, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "TypeScript", level: 92, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { name: "HTML/CSS", level: 93, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { name: "Next.js", level: 85, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+  { name: "Tailwind CSS", level: 89, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
   { name: "Redux", level: 70, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
   { name: "Vue.js", level: 75, category: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
   
   // Backend skills
-  { name: "Node.js", level: 88, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "Express", level: 87, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-  { name: "Django", level: 85, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-  { name: "Python", level: 88, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "C/C++", level: 75, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
-  { name: "RESTful APIs", level: 92, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-  { name: "GraphQL", level: 76, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
+  { name: "Node.js", level: 85, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Express", level: 85, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+  { name: "Django", level: 84, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
+  { name: "Python", level: 90, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "C/C++", level: 79, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+  { name: "RESTful APIs", level: 86, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+  { name: "GraphQL", level: 77, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
   { name: "Prisma", level: 82, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+  { name: "Pandas", level: 82, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+  { name: "NumPy", level: 84, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
   
   // Database skills
   { name: "MongoDB", level: 87, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
@@ -42,33 +40,24 @@ const skills = [
   { name: "Redis", level: 80, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
   { name: "Firebase", level: 85, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
   
-  // Data Science & ML
-  { name: "Pandas", level: 82, category: "datascience", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-  { name: "NumPy", level: 84, category: "datascience", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-  
   // DevOps & Tools
   { name: "Git", level: 90, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "Docker", level: 81, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "Docker", level: 88, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
   { name: "AWS", level: 85, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
   { name: "Terraform", level: 78, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
   { name: "CI/CD", level: 81, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
   { name: "GitLab", level: 83, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
-  
-  // Testing & Tools
-  { name: "Jest", level: 80, category: "testing", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
-  { name: "JUnit", level: 75, category: "testing", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-  { name: "Postman", level: 87, category: "testing", icon: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" },
-  
-  // System & Platforms
-  { name: "Linux", level: 85, category: "systems", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
-  { name: "Webpack", level: 76, category: "systems", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" }
+  { name: "Jest", level: 80, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
+  { name: "JUnit", level: 75, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { name: "Postman", level: 87, category: "devops", icon: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" },
+  { name: "Linux", level: 85, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+  { name: "Webpack", level: 76, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" }
 ];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleSkills, setVisibleSkills] = useState(skills.slice(0, 9)); // Display 9 skills initially
   const [hasAnimated, setHasAnimated] = useState({});
-  const [hoveredSkill, setHoveredSkill] = useState(null);
   const [visibleCount, setVisibleCount] = useState(9); // Display 9 skills initially
   
   useEffect(() => {
@@ -140,10 +129,7 @@ export const SkillsSection = () => {
       frontend: "Frontend",
       backend: "Backend",
       database: "Database",
-      datascience: "Data Science",
-      devops: "DevOps",
-      testing: "Testing",
-      systems: "Systems"
+      devops: "DevOps"
     };
     return labels[category] || category;
   };
@@ -156,10 +142,10 @@ export const SkillsSection = () => {
       id="skills"
       className="py-24 px-4 relative">
         
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">
-              My <span className="text-primary relative inline-block">
+              My <span className="text-blue-500 relative inline-block">
                 Skills
               </span>
             </h2>
@@ -168,7 +154,7 @@ export const SkillsSection = () => {
             </p>
           </div>
 
-          {/* Category Filters */}
+          {/* Simplified Category Filters */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             <button
               onClick={() => setActiveCategory("all")}
@@ -235,22 +221,6 @@ export const SkillsSection = () => {
               </span>
             </button>
             <button
-              onClick={() => setActiveCategory("datascience")}
-              className={cn(
-                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
-                activeCategory === "datascience"
-                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
-                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
-              )}
-            >
-              <span className="flex items-center gap-2">
-                <div className="flex items-center justify-center w-5 h-5">
-                  <BarChart3 className="w-4 h-4 text-cyan-400" strokeWidth={2} />
-                </div>
-                Data Science
-              </span>
-            </button>
-            <button
               onClick={() => setActiveCategory("devops")}
               className={cn(
                 "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
@@ -266,38 +236,6 @@ export const SkillsSection = () => {
                 DevOps
               </span>
             </button>
-            <button
-              onClick={() => setActiveCategory("testing")}
-              className={cn(
-                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
-                activeCategory === "testing"
-                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
-                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
-              )}
-            >
-              <span className="flex items-center gap-2">
-                <div className="flex items-center justify-center w-5 h-5">
-                  <TestTube className="w-4 h-4 text-yellow-400" strokeWidth={2} />
-                </div>
-                Testing
-              </span>
-            </button>
-            <button
-              onClick={() => setActiveCategory("systems")}
-              className={cn(
-                "px-4 py-2 rounded-full transition-all duration-100 hover:scale-105",
-                activeCategory === "systems"
-                  ? "bg-primary text-white shadow-md shadow-primary/30 font-bold"
-                  : "bg-card hover:bg-card/80 border-2 border-border font-bold"
-              )}
-            >
-              <span className="flex items-center gap-2">
-                <div className="flex items-center justify-center w-5 h-5">
-                  <Binary className="w-4 h-4 text-indigo-400" strokeWidth={2} />
-                </div>
-                Systems
-              </span>
-            </button>
           </div>
 
 
@@ -308,47 +246,35 @@ export const SkillsSection = () => {
                 key={skill.name}
                 data-skill={skill.name}
                 className={cn(
-                  "skill-card p-6 rounded-lg transition-all duration-500 relative overflow-hidden",
-                  "border border-primary/20 shadow-lg",
-                  "bg-dark/90 dark:bg-gray-900/95 backdrop-blur-lg", // Fixed background for better visibility
-                  "hover:transform hover:scale-105 hover:shadow-xl hover:shadow-primary/20",
-                  "dark:hover:shadow-primary/30",
+                  "skill-card p-4 rounded-lg transition-all duration-300 relative overflow-hidden",
+                  "border-3 border-primary/20 shadow-lg",
+                  "bg-dark/10 dark:bg-gray-900/95 backdrop-blur-sm",
+                  "hover:transform hover:scale-105",
                   hasAnimated[skill.name] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 )}
-                onMouseEnter={() => setHoveredSkill(skill.name)}
-                onMouseLeave={() => setHoveredSkill(null)}
               >
-                {/* 3D lighting effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/5 dark:from-white/10 dark:to-black/20 pointer-events-none"></div>
-                
-                {/* Animated glow when hovered */}
-                {hoveredSkill === skill.name && (
-                  <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-primary/10 rounded-full filter blur-xl transform -translate-x-1/2 -translate-y-1/2 animate-pulse-subtle"></div>
-                  </div>
-                )}
                 
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-bold text-foreground mb-1 flex items-center gap-2">
                     {/* Technology Icon */}
-                    <div className="p-1.5 bg-white dark:bg-gray-800/80 rounded-lg shadow-sm flex items-center justify-center">
+                    <div className="p-1.25 bg-white rounded-lg shadow-sm flex items-center justify-center">
                       <img 
                         src={skill.icon} 
                         alt={`${skill.name} icon`} 
-                        className="w-5 h-5 object-contain" 
+                        className="w-5 h-5" 
                       />
                     </div>
                     {skill.name}
                   </h3>
-                  <span className="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded-full shadow-sm">
+                  <span className="text-md font-bold px-1 py-1 text-primary rounded-full">
                     {getExpertiseLevel(skill.level)}
                   </span>
                 </div>
                 
-                <div className="relative w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-2 overflow-hidden shadow-inner">
+                <div className="relative w-full bg-gray-100 rounded-full mb-2 overflow-hidden shadow-inner">
                   <div
                     className={cn(
-                      "h-full rounded-full transition-all duration-1000 ease-out",
+                      "h-2 rounded-full transition-all duration-600 ease-out",
                       getLevelColorClass(skill.level)
                     )}
                     style={{ 
@@ -356,24 +282,11 @@ export const SkillsSection = () => {
                       transitionDelay: '0.2s'
                     }}
                   ></div>
-                  
-                  {/* Enhanced glow effect */}
-                  <div 
-                    className="absolute top-0 h-full w-5 bg-white/50 rounded-full"
-                    style={{ 
-                      left: `${skill.level - 5}%`, 
-                      opacity: hasAnimated[skill.name] ? 1 : 0,
-                      transition: 'opacity 0.3s ease-in-out, transform 0.5s ease-in-out',
-                      transform: hasAnimated[skill.name] ? 'translateX(0)' : 'translateX(-20px)',
-                      transitionDelay: '1s',
-                      boxShadow: '0 0 10px 3px rgba(255, 255, 255, 0.5)'
-                    }}
-                  ></div>
                 </div>
                 
                 {/* Level indicator with improved contrast */}
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-primary font-medium">
+                  <span className="text-primary font-bold">
                     {getCategoryLabel(skill.category)}
                   </span>
                   <span className="font-bold text-foreground">{skill.level}%</span>
@@ -387,15 +300,15 @@ export const SkillsSection = () => {
             <div className="flex justify-center mt-10">
               <button 
                 onClick={loadMoreSkills}
-                className="group flex items-center gap-2 px-6 py-3 bg-card hover:bg-primary/10 border border-primary/30 rounded-full transition-all duration-300 hover:shadow-lg"
+                className="group flex items-center gap-1 px-6 py-3 bg-card hover:bg-primary/10 border-2 border-primary/30 rounded-full transition-all duration-300 hover:shadow-lg"
               >
-                <span className="font-medium text-primary">Load More Skills</span>
+                <span className="font-bold text-primary">Load More Skills</span>
                 <ChevronDown className="h-4 w-4 text-primary group-hover:animate-bounce" />
               </button>
             </div>
           )}
 
-          {/* Skills summary stats with enhanced design */}
+          {/* Skills summary stats with simplified categories */}
           <div className="mt-16 bg-dark/80 dark:bg-gray-900/90 p-8 rounded-xl backdrop-blur-lg border border-primary/20 shadow-xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
