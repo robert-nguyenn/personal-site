@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Code, Database, Wrench, Filter } from "lucide-react";
+import { Code, Database, Wrench, Filter, Server, Table, Beaker, Terminal, ChevronDown } from "lucide-react";
 import { cn } from "../lib/utils";
 
 // Define the skills data with icon imports
@@ -17,18 +17,40 @@ const skills = [
   // Backend skills
   { name: "Node.js", level: 88, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
   { name: "Express", level: 87, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-  { name: "MongoDB", level: 87, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  { name: "SQL", level: 90, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "Django", level: 85, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
+  { name: "Python", level: 88, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "C/C++", level: 75, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+  { name: "RESTful APIs", level: 92, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
   { name: "GraphQL", level: 76, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
-  { name: "Firebase", level: 85, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+  { name: "Prisma", level: 82, category: "backend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+  
+  // Database skills
+  { name: "MongoDB", level: 87, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "PostgreSQL", level: 88, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "SQL", level: 90, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "Redis", level: 80, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+  { name: "Firebase", level: 85, category: "database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+  
+  // Data Science & ML
+  { name: "Pandas", level: 82, category: "datascience", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+  { name: "NumPy", level: 84, category: "datascience", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
   
   // DevOps & Tools
-  { name: "Git", level: 90, category: "tools", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "Docker", level: 81, category: "tools", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-  { name: "AWS", level: 85, category: "tools", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-  { name: "Jest", level: 80, category: "tools", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
-  { name: "CI/CD", level: 81, category: "tools", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
-  { name: "Webpack", level: 76, category: "tools", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" }
+  { name: "Git", level: 90, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+  { name: "Docker", level: 81, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "AWS", level: 85, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+  { name: "Terraform", level: 78, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
+  { name: "CI/CD", level: 81, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
+  { name: "GitLab", level: 83, category: "devops", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
+  
+  // Testing & Tools
+  { name: "Jest", level: 80, category: "testing", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
+  { name: "JUnit", level: 75, category: "testing", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { name: "Postman", level: 87, category: "testing", icon: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" },
+  
+  // System & Platforms
+  { name: "Linux", level: 85, category: "systems", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+  { name: "Webpack", level: 76, category: "systems", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" }
 ];
 
 export const SkillsSection = () => {
@@ -36,7 +58,8 @@ export const SkillsSection = () => {
   const [visibleSkills, setVisibleSkills] = useState(skills);
   const [hasAnimated, setHasAnimated] = useState({});
   const [hoveredSkill, setHoveredSkill] = useState(null);
-  //ok
+  const [visibleCount, setVisibleCount] = useState(9); // Display 9 skills initially
+  
   // Add missing filter logic
   useEffect(() => {
     // Handle intersection observer for animating skills on scroll
@@ -66,14 +89,22 @@ export const SkillsSection = () => {
     };
   }, [visibleSkills]);
 
-  // Filter skills by category
+
+  // Filter skills by category and apply pagination for "all" category
   useEffect(() => {
     if (activeCategory === "all") {
-      setVisibleSkills(skills);
+      setVisibleSkills(skills.slice(0, visibleCount));
     } else {
       setVisibleSkills(skills.filter(skill => skill.category === activeCategory));
+      // Reset visible count when switching categories
+      setVisibleCount(9);
     }
-  }, [activeCategory]);
+  }, [activeCategory, visibleCount]);
+
+  // Function to load more skills
+  const loadMoreSkills = () => {
+    setVisibleCount(prev => Math.min(prev + 6, skills.length)); // Load 6 more skills
+  };
 
   // Get expertise level description 
   const getExpertiseLevel = (level) => {
@@ -92,6 +123,23 @@ export const SkillsSection = () => {
     if (level >= 60) return "bg-gradient-to-r from-green-500 to-primary";
     return "bg-gradient-to-r from-yellow-500 to-primary";
   };
+  
+  // Get category label
+  const getCategoryLabel = (category) => {
+    const labels = {
+      frontend: "Frontend",
+      backend: "Backend",
+      database: "Database",
+      datascience: "Data Science",
+      devops: "DevOps",
+      testing: "Testing",
+      systems: "Systems"
+    };
+    return labels[category] || category;
+  };
+
+  // Check if there are more skills to load
+  const hasMoreSkills = activeCategory === "all" && visibleCount < skills.length;
 
   return (
     <section 
@@ -156,22 +204,78 @@ export const SkillsSection = () => {
               )}
             >
               <span className="flex items-center gap-2">
-                <Database className="h-4 w-4" />
+                <Server className="h-4 w-4" />
                 Backend
               </span>
             </button>
             <button
-              onClick={() => setActiveCategory("tools")}
+              onClick={() => setActiveCategory("database")}
               className={cn(
                 "px-4 py-2 rounded-full transition-all duration-300",
-                activeCategory === "tools"
+                activeCategory === "database"
+                  ? "bg-primary text-white shadow-md shadow-primary/30"
+                  : "bg-card hover:bg-card/80 border border-border"
+              )}
+            >
+              <span className="flex items-center gap-2">
+                <Database className="h-4 w-4" />
+                Database
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveCategory("datascience")}
+              className={cn(
+                "px-4 py-2 rounded-full transition-all duration-300",
+                activeCategory === "datascience"
+                  ? "bg-primary text-white shadow-md shadow-primary/30"
+                  : "bg-card hover:bg-card/80 border border-border"
+              )}
+            >
+              <span className="flex items-center gap-2">
+                <Beaker className="h-4 w-4" />
+                Data Science
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveCategory("devops")}
+              className={cn(
+                "px-4 py-2 rounded-full transition-all duration-300",
+                activeCategory === "devops"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
                 <Wrench className="h-4 w-4" />
-                DevOps & Tools
+                DevOps
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveCategory("testing")}
+              className={cn(
+                "px-4 py-2 rounded-full transition-all duration-300",
+                activeCategory === "testing"
+                  ? "bg-primary text-white shadow-md shadow-primary/30"
+                  : "bg-card hover:bg-card/80 border border-border"
+              )}
+            >
+              <span className="flex items-center gap-2">
+                <Table className="h-4 w-4" />
+                Testing
+              </span>
+            </button>
+            <button
+              onClick={() => setActiveCategory("systems")}
+              className={cn(
+                "px-4 py-2 rounded-full transition-all duration-300",
+                activeCategory === "systems"
+                  ? "bg-primary text-white shadow-md shadow-primary/30"
+                  : "bg-card hover:bg-card/80 border border-border"
+              )}
+            >
+              <span className="flex items-center gap-2">
+                <Terminal className="h-4 w-4" />
+                Systems
               </span>
             </button>
           </div>
@@ -249,8 +353,7 @@ export const SkillsSection = () => {
                 {/* Level indicator with improved contrast */}
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-primary font-medium">
-                    {skill.category === "frontend" ? "Frontend" : 
-                     skill.category === "backend" ? "Backend" : "DevOps & Tools"}
+                    {getCategoryLabel(skill.category)}
                   </span>
                   <span className="font-bold text-foreground">{skill.level}%</span>
                 </div>
@@ -258,28 +361,48 @@ export const SkillsSection = () => {
             ))}
           </div>
 
+          {/* Load More Button */}
+          {hasMoreSkills && (
+            <div className="flex justify-center mt-10">
+              <button 
+                onClick={loadMoreSkills}
+                className="group flex items-center gap-2 px-6 py-3 bg-card hover:bg-primary/10 border border-primary/30 rounded-full transition-all duration-300 hover:shadow-lg"
+              >
+                <span className="font-medium text-primary">Load More Skills</span>
+                <ChevronDown className="h-4 w-4 text-primary group-hover:animate-bounce" />
+              </button>
+            </div>
+          )}
+
           {/* Skills summary stats with enhanced design */}
           <div className="mt-16 bg-dark/80 dark:bg-gray-900/90 p-8 rounded-xl backdrop-blur-lg border border-primary/20 shadow-xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
                 <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
                 <div className="relative">
                   <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "frontend").length}</h3>
-                  <p className="text-foreground">Frontend Skills</p>
+                  <p className="text-foreground">Frontend</p>
                 </div>
               </div>
               <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
                 <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
                 <div className="relative">
                   <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "backend").length}</h3>
-                  <p className="text-foreground">Backend & Database Skills</p>
+                  <p className="text-foreground">Backend</p>
                 </div>
               </div>
               <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
                 <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
                 <div className="relative">
-                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "tools").length}</h3>
-                  <p className="text-foreground">DevOps & Tools</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "database").length}</h3>
+                  <p className="text-foreground">Database</p>
+                </div>
+              </div>
+              <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
+                <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
+                <div className="relative">
+                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "devops").length}</h3>
+                  <p className="text-foreground">DevOps</p>
                 </div>
               </div>
             </div>
