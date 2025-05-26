@@ -55,12 +55,11 @@ const skills = [
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [visibleSkills, setVisibleSkills] = useState(skills);
+  const [visibleSkills, setVisibleSkills] = useState(skills.slice(0, 9)); // Display 9 skills initially
   const [hasAnimated, setHasAnimated] = useState({});
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [visibleCount, setVisibleCount] = useState(9); // Display 9 skills initially
   
-  // Add missing filter logic
   useEffect(() => {
     // Handle intersection observer for animating skills on scroll
     const observer = new IntersectionObserver(
@@ -145,21 +144,15 @@ export const SkillsSection = () => {
     <section 
       id="skills"
       className="py-24 px-4 relative">
-        {/* Background elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-20 -left-20 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl"></div>
-        </div>
         
-        <div className="container mx-auto max-w-5xl relative z-10">
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">
               My <span className="text-primary relative inline-block">
                 Skills
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
               </span>
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-4 text-muted-foreground font-bold max-w-3xl mx-auto">
               A collection of technologies I've mastered through years of practice and professional work.
             </p>
           </div>
