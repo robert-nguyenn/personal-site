@@ -1,5 +1,16 @@
+// At the top of your file, import additional icons
 import React, { useState, useEffect } from "react";
-import { Code, Database, Wrench, Filter, Server, Table, Beaker, Terminal, ChevronDown } from "lucide-react";
+import { 
+  LayoutGrid, 
+  FileCode, 
+  ServerCog,
+  Database, 
+  BarChart3, 
+  Cpu, 
+  TestTube,
+  Binary,
+  ChevronDown
+} from "lucide-react";
 import { cn } from "../lib/utils";
 
 // Define the skills data with icon imports
@@ -157,121 +168,138 @@ export const SkillsSection = () => {
             </p>
           </div>
 
-          {/* Category Filters */}
+          {/* Category Filters with improved icons */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             <button
               onClick={() => setActiveCategory("all")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "all"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Filter className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <LayoutGrid className={`w-4 h-4 ${activeCategory === "all" ? "text-white" : "text-purple-400"}`} strokeWidth={2} />
+                </div>
                 All Skills
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("frontend")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "frontend"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Code className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <FileCode className={`w-4 h-4 ${activeCategory === "frontend" ? "text-white" : "text-blue-400"}`} strokeWidth={2} />
+                </div>
                 Frontend
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("backend")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "backend"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Server className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <ServerCog className={`w-4 h-4 ${activeCategory === "backend" ? "text-white" : "text-green-400"}`} strokeWidth={2} />
+                </div>
                 Backend
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("database")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "database"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Database className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <Database className={`w-4 h-4 ${activeCategory === "database" ? "text-white" : "text-orange-400"}`} strokeWidth={2} />
+                </div>
                 Database
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("datascience")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "datascience"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Beaker className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <BarChart3 className={`w-4 h-4 ${activeCategory === "datascience" ? "text-white" : "text-cyan-400"}`} strokeWidth={2} />
+                </div>
                 Data Science
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("devops")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "devops"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Wrench className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <Cpu className={`w-4 h-4 ${activeCategory === "devops" ? "text-white" : "text-red-400"}`} strokeWidth={2} />
+                </div>
                 DevOps
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("testing")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "testing"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Table className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <TestTube className={`w-4 h-4 ${activeCategory === "testing" ? "text-white" : "text-yellow-400"}`} strokeWidth={2} />
+                </div>
                 Testing
               </span>
             </button>
             <button
               onClick={() => setActiveCategory("systems")}
               className={cn(
-                "px-4 py-2 rounded-full transition-all duration-300",
+                "px-4 py-2 rounded-full transition-all duration-300 hover:scale-105",
                 activeCategory === "systems"
                   ? "bg-primary text-white shadow-md shadow-primary/30"
                   : "bg-card hover:bg-card/80 border border-border"
               )}
             >
               <span className="flex items-center gap-2">
-                <Terminal className="h-4 w-4" />
+                <div className="flex items-center justify-center w-5 h-5">
+                  <Binary className={`w-4 h-4 ${activeCategory === "systems" ? "text-white" : "text-indigo-400"}`} strokeWidth={2} />
+                </div>
                 Systems
               </span>
             </button>
           </div>
+
 
           {/* Enhanced Skills Grid with improved visibility */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
