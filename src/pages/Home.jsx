@@ -8,6 +8,7 @@ import { Footer } from "../components/Footer";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { StarBackground } from "../components/StarBackground";
 import { CodingStatsSection } from "../components/CodingStatsSection";
+import { ExperienceSection } from "../components/ExperienceSection"; // Import the new section
 
 export const Home = () => {
   return (
@@ -16,9 +17,10 @@ export const Home = () => {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <ExperienceSection /> {/* Add the new Experience section here */}
       <SkillsSection />
       <ProjectsSection />
-      <CodingStatsSection /> {/* Add the new section here */}
+      <CodingStatsSection />
       <ContactSection />   
       <Footer />
       <ThemeToggle />

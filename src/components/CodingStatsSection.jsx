@@ -31,29 +31,18 @@ export const CodingStatsSection = () => {
           
           {/* Text content */}
           <div className="space-y-6 order-1 md:order-2">
-            <h3 className="text-2xl font-semibold flex items-center">
-              <span className="bg-primary/10 p-2 rounded-lg mr-3">
-                <BrainCircuit className="h-5 w-5 text-primary"/>
-              </span>
-              <span>Algorithmic Thinking</span>
-            </h3>
-
-            <p className="text-muted-foreground leading-relaxed">
-              I enjoy challenging myself through competitive programming and algorithm puzzles. 
-              This has helped me develop strong problem-solving skills and the ability to write 
-              efficient, optimized code under constraints.
-            </p>
 
             <div className="gradient-border p-5 card-hover backdrop-blur-sm group">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                  <Code className="h-5 w-5 text-primary"/>
+                  <BrainCircuit className="h-5 w-5 text-primary"/>
                 </div>
                 <div className="text-left">
                   <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Data Structures & Algorithms</h4>
                   <p className="text-muted-foreground leading-relaxed">
-                    I've tackled various algorithmic challenges across difficulty levels, focusing on 
-                    optimization, time complexity, and elegant solutions to complex problems.
+                    I enjoy challenging myself through competitive programming and algorithm puzzles. 
+                    This has helped me develop strong problem-solving skills and the ability to write 
+                    efficient, optimized code under constraints.
                   </p>
                 </div>
               </div>

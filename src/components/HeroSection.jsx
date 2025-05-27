@@ -36,16 +36,9 @@ export const HeroSection = () => {
               <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-3"> Nguyen</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-4 leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-4 leading-relaxed font-bold">
               Big fan of engineering and tackling challenges. Enjoy getting into team brainstorms, diving deep into research, and making projects happen. Always up for learning new things!
             </p>
-
-            <div className="pt-6 opacity-0 animate-fade-in-delay-4 flex flex-wrap justify-center gap-4">
-              <a href="#projects" className="cosmic-button group relative overflow-hidden">
-                <span className="relative z-10">View My Work</span>
-                <span className="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-              </a>
-            </div>
           </div>
         </div>
 

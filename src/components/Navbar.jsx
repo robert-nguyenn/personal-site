@@ -2,11 +2,14 @@ import { cn } from "../lib/utils";
 import { useState, useEffect } from "react"; 
 import { Menu, X } from "lucide-react";
 
+// Update the navItems array to include Experience
 const navItems = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Leetcode", href: "#coding-stats" },
   { name: "Contact", href: "#contact" },
 ];
 

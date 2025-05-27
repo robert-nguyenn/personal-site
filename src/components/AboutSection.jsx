@@ -12,9 +12,8 @@ export const AboutSection = () => {
       <div className="container max-w-5xl mx-auto relative z-10">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-5xl font-bold"> 
-            About <span className="text-primary relative inline-block">
+            About <span className="text-blue-500 relative inline-block">
               Me
-              <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
             </span>
           </h2>
         </div>
@@ -49,7 +48,9 @@ export const AboutSection = () => {
               >
                 <span>Download Resume</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:translate-y-1 transition-transform">
-                  <path d="M12 5v14M7 10l5 5 5-5"/>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
               </a>
             </div>
