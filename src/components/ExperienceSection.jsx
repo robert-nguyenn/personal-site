@@ -10,7 +10,7 @@ export const ExperienceSection = () => {
         <div className="absolute bottom-1/3 left-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl transform -translate-x-1/2"></div>
       </div>
       
-      <div className="container mx-auto max-w-5xl relative z-10 mb-12">
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
             Professional <span className="text-blue-500 relative inline-block">
@@ -21,11 +21,11 @@ export const ExperienceSection = () => {
             Scroll through my professional journey
           </p>
         </div>
-      </div>
 
-      {/* Full-width timeline container for better interaction area */}
-      <div className="w-full relative">
-        <ExperienceTimeline />
+        {/* Full-width timeline container with consistent centering */}
+        <div className="w-full relative">
+          <ExperienceTimeline />
+        </div>
       </div>
     </section>
   );

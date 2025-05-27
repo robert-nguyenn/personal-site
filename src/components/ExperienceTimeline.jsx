@@ -3,7 +3,7 @@ import { Building2, Calendar, MapPin, ChevronUp, ChevronDown } from 'lucide-reac
 import { cn } from "../lib/utils";
 
 export const ExperienceTimeline = () => {
-  // Professional experience data
+  // Professional experience data with added logo paths
   const experiences = [
     {
       id: 1,
@@ -11,6 +11,7 @@ export const ExperienceTimeline = () => {
       position: "Software Engineer Intern",
       period: "Dec 2023 - Present",
       location: "Lexington, KY",
+      logo: "/logos/theta-zeta.png" // Add your actual logo paths here
     },
     {
       id: 2,
@@ -18,6 +19,7 @@ export const ExperienceTimeline = () => {
       position: "Software Developer",
       period: "May 2023 - Nov 2023",
       location: "Hanoi, Vietnam",
+      logo: "/logos/noretek.png" // Add your actual logo paths here
     },
     {
       id: 3,
@@ -25,6 +27,7 @@ export const ExperienceTimeline = () => {
       position: "Research Assistant",
       period: "Jan 2023 - May 2023", 
       location: "Danville, KY",
+      logo: "/logos/centre-college.png" // Add your actual logo paths here
     }
   ];
   
@@ -37,9 +40,11 @@ export const ExperienceTimeline = () => {
   const [dragStartY, setDragStartY] = useState(0);
   const [isAtBoundary, setIsAtBoundary] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [logoTransitioning, setLogoTransitioning] = useState(false);
   const timelineRef = useRef(null);
   const containerRef = useRef(null);
   const scrollTimeoutRef = useRef(null);
+  const previousLogoRef = useRef(null);
   
   // Calculate what percentage of timeline is showing based on active experience
   const getTimelinePercentage = (id) => {
@@ -54,6 +59,20 @@ export const ExperienceTimeline = () => {
     const isLastExperience = activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id;
     setIsAtBoundary(isFirstExperience || isLastExperience);
   }, [activeExperienceId, sortedExperiences]);
+  
+  // Handle logo transitions when active experience changes
+  useEffect(() => {
+    // Store the previous logo for transition
+    previousLogoRef.current = sortedExperiences.find(exp => exp.id === activeExperienceId)?.logo;
+    
+    // Trigger logo transition animation
+    setLogoTransitioning(true);
+    const timer = setTimeout(() => {
+      setLogoTransitioning(false);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, [activeExperienceId]);
   
   // Handle timeline scroll to change active experience
   const handleScroll = (direction) => {
@@ -209,161 +228,188 @@ export const ExperienceTimeline = () => {
       className="relative py-12 select-none w-full"
       onMouseLeave={handleMouseUp}
     >
-      <div className="max-w-5xl mx-auto flex">
-        {/* Vertical timeline on the left */}
-        <div className="relative flex flex-col items-center mr-8">
-          {/* Timeline navigation controls */}
-          <button
-            onClick={() => handleScroll('prev')}
-            disabled={activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id}
-            className={cn(
-              "p-1.5 rounded-full transition-all mb-2",
-              activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id 
-                ? "opacity-50 cursor-not-allowed" 
-                : "hover:bg-primary/10 text-primary"
-            )}
-            aria-label="Previous experience"
-          >
-            <ChevronUp className="h-4 w-4" />
-          </button>
-          
-          {/* Vertical Timeline UI */}
-          <div 
-            ref={timelineRef}
-            className={cn(
-              "relative w-2 bg-gray-200 rounded-full h-[280px] cursor-pointer transition-all",
-              isDragging && "cursor-grabbing",
-              isScrolling && "after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-8 after:h-8 after:bg-primary/10 after:rounded-full after:animate-ping after:animation-duration-300"
-            )}
-            onClick={handleTimelineClick}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-          >
-            <div 
-              className="absolute top-0 left-0 w-full bg-primary rounded-full transition-all duration-500 ease-out"
-              style={{ height: `${getTimelinePercentage(activeExperienceId)}%` }}
-            />
-            
-            {sortedExperiences.map((exp, index) => {
-              const isActive = exp.id === activeExperienceId;
-              const position = ((sortedExperiences.length - 1 - index) / (sortedExperiences.length - 1)) * 100;
-              
-              return (
-                <div 
-                  key={exp.id}
-                  onClick={() => setActiveExperienceId(exp.id)}
+      {/* Center content with grid layout - TWO COLUMN LAYOUT */}
+      <div className="max-w-6xl mx-auto">
+        {/* Two column grid layout with REDUCED GAP */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+          {/* Left column - Timeline and cards (50% width on desktop) */}
+          <div className="md:col-span-2 flex flex-col items-center">
+            <div className="flex gap-6 w-full max-w-md">
+              {/* Vertical timeline */}
+              <div className="relative flex flex-col items-center">
+                {/* Timeline navigation controls */}
+                <button
+                  onClick={() => handleScroll('prev')}
+                  disabled={activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id}
                   className={cn(
-                    "absolute -left-1 w-4 h-4 rounded-full -mt-2 transition-all duration-300 border border-white shadow-md",
-                    isActive 
-                      ? "bg-primary scale-125 shadow-primary/50" 
-                      : "bg-gray-300 hover:bg-primary/60"
+                    "p-1.5 rounded-full transition-all mb-2",
+                    activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id 
+                      ? "opacity-50 cursor-not-allowed" 
+                      : "hover:bg-primary/10 text-primary"
                   )}
-                  style={{ top: `${position}%` }}
-                />
-              );
-            })}
-            
-            {/* Current date indicator - FIXED DATE ALIGNMENT */}
-            <div className="absolute -left-28 w-24 text-right">
-              {sortedExperiences.map((exp, index) => {
-                const isActive = exp.id === activeExperienceId;
-                const position = ((sortedExperiences.length - 1 - index) / (sortedExperiences.length - 1)) * 100;
+                  aria-label="Previous experience"
+                >
+                  <ChevronUp className="h-4 w-4" />
+                </button>
                 
-                // Extract dates to properly format them
-                const periodParts = exp.period.split(" - ");
-                
-                return isActive ? (
+                {/* Vertical Timeline UI */}
+                <div 
+                  ref={timelineRef}
+                  className={cn(
+                    "relative w-2 bg-gray-200 rounded-full h-[280px] cursor-pointer transition-all",
+                    isDragging && "cursor-grabbing",
+                    isScrolling && "after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-8 after:h-8 after:bg-primary/10 after:rounded-full after:animate-ping after:animation-duration-300"
+                  )}
+                  onClick={handleTimelineClick}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                >
                   <div 
-                    key={`date-${exp.id}`}
-                    className="absolute transform -translate-y-1/2 text-xs font-medium text-primary transition-all duration-300 whitespace-nowrap"
-                    style={{ top: `${position}%` }}
-                  >
-                    {periodParts[0]}
-                    <br />
-                    {periodParts[1] || ""}
+                    className="absolute top-0 left-0 w-full bg-primary rounded-full transition-all duration-500 ease-out"
+                    style={{ height: `${getTimelinePercentage(activeExperienceId)}%` }}
+                  />
+                  
+                  {sortedExperiences.map((exp, index) => {
+                    const isActive = exp.id === activeExperienceId;
+                    const position = ((sortedExperiences.length - 1 - index) / (sortedExperiences.length - 1)) * 100;
+                    
+                    return (
+                      <div 
+                        key={exp.id}
+                        onClick={() => setActiveExperienceId(exp.id)}
+                        className={cn(
+                          "absolute -left-1 w-4 h-4 rounded-full -mt-2 transition-all duration-300 border border-white shadow-md",
+                          isActive 
+                            ? "bg-primary scale-125 shadow-primary/50" 
+                            : "bg-gray-300 hover:bg-primary/60"
+                        )}
+                        style={{ top: `${position}%` }}
+                      />
+                    );
+                  })}
+                </div>
+                
+                <button
+                  onClick={() => handleScroll('next')}
+                  disabled={activeExperienceId === sortedExperiences[0].id}
+                  className={cn(
+                    "p-1.5 rounded-full transition-all mt-2",
+                    activeExperienceId === sortedExperiences[0].id 
+                      ? "opacity-50 cursor-not-allowed" 
+                      : "hover:bg-primary/10 text-primary"
+                  )}
+                  aria-label="Next experience"
+                >
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+                
+                {/* Scroll indicator - appears when at boundaries */}
+                {isAtBoundary && (
+                  <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs text-muted-foreground animate-bounce">
+                    <ChevronDown className="h-4 w-4" />
+                    <span className="sr-only">Continue scrolling</span>
                   </div>
-                ) : null;
-              })}
+                )}
+              </div>
+              
+              {/* Experience card */}
+              <div className="relative flex-1 min-h-[210px]">
+                {sortedExperiences.map((experience) => {
+                  const isActive = experience.id === activeExperienceId;
+                  
+                  return (
+                    <div
+                      key={experience.id}
+                      className={cn(
+                        "transition-all duration-500 ease-out absolute w-full",
+                        isActive ? "opacity-100 z-10" : "opacity-0 pointer-events-none"
+                      )}
+                    >
+                      <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-3 shadow-md flex flex-col">
+                        {/* Header with company name and building icon */}
+                        <div className="flex flex-col mb-2 border-b border-primary/10 pb-2">
+                          <div className="flex items-center gap-1.5">
+                            <Building2 className="h-3.5 w-3.5 text-primary" />
+                            <h3 className="text-base font-bold text-foreground">{experience.company}</h3>
+                          </div>
+                          <div className="flex items-center mt-0.5 text-sm text-primary font-medium">
+                            {experience.position}
+                          </div>
+                        </div>
+                        
+                        {/* Details section - date and location */}
+                        <div className="flex items-center gap-3 text-xs">
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <Calendar className="h-3 w-3 text-primary" />
+                            <span>{experience.period}</span>
+                          </div>
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <MapPin className="h-3 w-3 text-primary" />
+                            <span>{experience.location}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Footer - just showing card number */}
+                        <div className="mt-2 pt-2 border-t border-primary/10">
+                          <div className="flex items-center justify-end">
+                            <span className="text-[10px] text-muted-foreground">
+                              {`${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           
-          <button
-            onClick={() => handleScroll('next')}
-            disabled={activeExperienceId === sortedExperiences[0].id}
-            className={cn(
-              "p-1.5 rounded-full transition-all mt-2",
-              activeExperienceId === sortedExperiences[0].id 
-                ? "opacity-50 cursor-not-allowed" 
-                : "hover:bg-primary/10 text-primary"
-            )}
-            aria-label="Next experience"
-          >
-            <ChevronDown className="h-4 w-4" />
-          </button>
-          
-          {/* Scroll indicator - appears when at boundaries */}
-          {isAtBoundary && (
-            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs text-muted-foreground animate-bounce">
-              <ChevronDown className="h-4 w-4" />
-              <span className="sr-only">Continue scrolling</span>
-            </div>
-          )}
-        </div>
-        
-        {/* Experience card on the right */}
-        <div className="flex-1 relative min-h-[280px]">
-          {sortedExperiences.map((experience) => {
-            const isActive = experience.id === activeExperienceId;
-            
-            return (
-              <div
-                key={experience.id}
-                className={cn(
-                  "transition-all duration-500 ease-out absolute w-full",
-                  isActive ? "opacity-100 z-10" : "opacity-0 pointer-events-none"
-                )}
-              >
-                <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-2xl p-5 shadow-xl flex flex-col">
-                  {/* Header with company name and building icon */}
-                  <div className="flex flex-col mb-4 border-b border-primary/10 pb-4">
-                    <div className="flex items-center gap-2">
-                      <Building2 className="h-4 w-4 text-primary" />
-                      <h3 className="text-xl font-bold text-foreground">{experience.company}</h3>
+          {/* Right column - Logo display (60% width on desktop) - INCREASED SIZE */}
+          <div className="md:col-span-3 flex justify-center items-center h-full">
+            <div className="relative w-full h-80 flex items-center justify-center">
+              {/* Logo container with transition effect - LARGER CONTAINER */}
+              <div className="relative w-full h-full flex items-center justify-center rounded-xl bg-card/50 backdrop-blur-sm p-8 border border-primary/10 shadow-md overflow-hidden">
+                {/* Current logo with fade-in animation - LARGER IMAGE */}
+                <div 
+                  className={cn(
+                    "absolute inset-0 flex items-center justify-center transition-opacity duration-300 p-6",
+                    logoTransitioning ? "opacity-0" : "opacity-100"
+                  )}
+                >
+                  {activeExperience?.logo ? (
+                    <img 
+                      src={activeExperience.logo} 
+                      alt={`${activeExperience.company} logo`} 
+                      className="max-w-full max-h-full object-contain transition-all duration-300"
+                    />
+                  ) : (
+                    <div className="w-48 h-48 rounded-full bg-gray-200 flex items-center justify-center">
+                      <Building2 className="h-24 w-24 text-gray-400" />
                     </div>
-                    <div className="flex items-center mt-1 text-primary font-medium">
-                      {experience.position}
-                    </div>
-                  </div>
-                  
-                  {/* Details section - date and location */}
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <Calendar className="h-3.5 w-3.5 text-primary" />
-                      <span>{experience.period}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <MapPin className="h-3.5 w-3.5 text-primary" />
-                      <span>{experience.location}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Footer - just showing card number */}
-                  <div className="mt-auto pt-4 border-t border-primary/10">
-                    <div className="flex items-center justify-end">
-                      <span className="text-xs text-muted-foreground">
-                        {`${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
-                      </span>
-                    </div>
-                  </div>
+                  )}
+                </div>
+                
+                {/* Company name under the logo */}
+                <div className="absolute bottom-4 left-0 right-0 text-center">
+                  <span className="text-sm font-medium bg-card/80 px-3 py-1 rounded-full backdrop-blur-sm">
+                    {activeExperience?.company}
+                  </span>
                 </div>
               </div>
-            );
-          })}
+              
+              {/* Logo shadow effect */}
+              <div 
+                className="absolute -bottom-4 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent opacity-50" 
+                aria-hidden="true"
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
       
-      {/* Full-width interaction overlay - invisible but captures mouse events across the entire width */}
+      {/* Full-width interaction overlay */}
       <div 
         className={cn(
           "absolute inset-0 w-full z-0",
