@@ -35,9 +35,11 @@ export const ExperienceTimeline = () => {
   const [activeExperienceId, setActiveExperienceId] = useState(3); // Start with the oldest position
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartY, setDragStartY] = useState(0);
+  const [isAtBoundary, setIsAtBoundary] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const timelineRef = useRef(null);
   const containerRef = useRef(null);
-  const sectionRef = useRef(null);
+  const scrollTimeoutRef = useRef(null);
   
   // Calculate what percentage of timeline is showing based on active experience
   const getTimelinePercentage = (id) => {
@@ -45,6 +47,13 @@ export const ExperienceTimeline = () => {
     const percentage = ((sortedExperiences.length - 1 - index) / (sortedExperiences.length - 1)) * 100;
     return percentage;
   };
+  
+  // Check if we're at a scroll boundary (first or last experience)
+  useEffect(() => {
+    const isFirstExperience = activeExperienceId === sortedExperiences[0].id;
+    const isLastExperience = activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id;
+    setIsAtBoundary(isFirstExperience || isLastExperience);
+  }, [activeExperienceId, sortedExperiences]);
   
   // Handle timeline scroll to change active experience
   const handleScroll = (direction) => {
@@ -56,10 +65,12 @@ export const ExperienceTimeline = () => {
     } else if (direction === 'prev' && currentIndex < sortedExperiences.length - 1) {
       newIndex = currentIndex + 1;
     } else {
-      return; // Don't go beyond bounds
+      // We're at a boundary, allow page scrolling to continue
+      return false; // Return false to indicate we didn't handle the scroll
     }
     
     setActiveExperienceId(sortedExperiences[newIndex].id);
+    return true; // Return true to indicate we handled the scroll
   };
   
   // Handle timeline click to navigate directly
@@ -86,15 +97,13 @@ export const ExperienceTimeline = () => {
     e.preventDefault();
     
     const deltaY = e.pageY - dragStartY;
-    // Increase sensitivity by adjusting the scaling factor (0.01 is more sensitive)
-    const scrollSensitivity = 0.01;
+    // Use scaled sensitivity for smoother control
+    const scrollSensitivity = 0.008;
     const moveAmount = deltaY * scrollSensitivity;
     
     const currentIndex = sortedExperiences.findIndex(exp => exp.id === activeExperienceId);
     
-    // Calculate new index with improved sensitivity
-    // Moving down (positive deltaY) decreases index (moves to newer jobs)
-    // Moving up (negative deltaY) increases index (moves to older jobs)
+    // Calculate potential new index
     let targetIndex = currentIndex - Math.sign(deltaY) * Math.min(1, Math.abs(moveAmount));
     
     // Clamp the index within bounds
@@ -111,25 +120,72 @@ export const ExperienceTimeline = () => {
     setIsDragging(false);
   };
   
-  // Handle wheel events to prevent page scroll when interacting with timeline
+  // Debounce scroll events to prevent rapid firing
+  const debounceScroll = (callback, delay = 100) => {
+    return (...args) => {
+      setIsScrolling(true);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      
+      scrollTimeoutRef.current = setTimeout(() => {
+        callback(...args);
+        setIsScrolling(false);
+      }, delay);
+    };
+  };
+  
+  // Handle wheel events with improved boundary detection
   useEffect(() => {
+    // Track wheel direction and accumulated delta for smooth snapping
+    let accumulatedDelta = 0;
+    let lastScrollTime = 0;
+    const scrollThreshold = 50; // Adjust for sensitivity
+    const scrollCooldown = 200; // ms between scroll events to reset accumulation
+    
     const handleWheel = (e) => {
-      // Only prevent default if we're within the entire experience section
-      // This allows page scrolling once fully scrolled through experiences
+      // Check if we're at a boundary and scrolling in the direction to exit
+      const isScrollingDown = e.deltaY > 0;
+      const isFirstExperience = activeExperienceId === sortedExperiences[0].id;
+      const isLastExperience = activeExperienceId === sortedExperiences[sortedExperiences.length - 1].id;
+      
+      // If at boundary and trying to scroll beyond it, don't prevent default
+      if ((isFirstExperience && isScrollingDown) || (isLastExperience && !isScrollingDown)) {
+        // Let the default scroll behavior happen
+        return;
+      }
+      
+      // Otherwise, handle the timeline scroll
       if (containerRef.current && containerRef.current.contains(e.target)) {
         e.preventDefault();
         
-        // Use smaller deltaY values for more granular control
-        const direction = e.deltaY > 0 ? 'next' : 'prev';
-        handleScroll(direction);
+        // Reset accumulated delta if it's been a while
+        const now = Date.now();
+        if (now - lastScrollTime > scrollCooldown) {
+          accumulatedDelta = 0;
+        }
+        lastScrollTime = now;
+        
+        // Accumulate scroll delta for smoother control
+        accumulatedDelta += e.deltaY;
+        
+        // Only trigger scroll when we've accumulated enough movement
+        if (Math.abs(accumulatedDelta) > scrollThreshold) {
+          const direction = accumulatedDelta > 0 ? 'next' : 'prev';
+          const handled = handleScroll(direction);
+          if (handled) {
+            accumulatedDelta = 0; // Reset after handling
+          }
+        }
       }
     };
     
-    // Make the entire window listen for wheel events
+    // Add the event listener
     window.addEventListener('wheel', handleWheel, { passive: false });
     
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
   }, [activeExperienceId]);
   
@@ -154,7 +210,7 @@ export const ExperienceTimeline = () => {
       onMouseLeave={handleMouseUp}
     >
       <div className="max-w-5xl mx-auto flex">
-        {/* Vertical timeline on the left - MADE SLIMMER */}
+        {/* Vertical timeline on the left */}
         <div className="relative flex flex-col items-center mr-8">
           {/* Timeline navigation controls */}
           <button
@@ -171,10 +227,14 @@ export const ExperienceTimeline = () => {
             <ChevronUp className="h-4 w-4" />
           </button>
           
-          {/* Vertical Timeline UI - MADE SLIMMER */}
+          {/* Vertical Timeline UI */}
           <div 
             ref={timelineRef}
-            className="relative w-2 bg-gray-200 rounded-full h-[280px] cursor-pointer"
+            className={cn(
+              "relative w-2 bg-gray-200 rounded-full h-[280px] cursor-pointer transition-all",
+              isDragging && "cursor-grabbing",
+              isScrolling && "after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-8 after:h-8 after:bg-primary/10 after:rounded-full after:animate-ping after:animation-duration-300"
+            )}
             onClick={handleTimelineClick}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -204,7 +264,7 @@ export const ExperienceTimeline = () => {
               );
             })}
             
-            {/* Current date indicator - MADE SLIMMER */}
+            {/* Current date indicator */}
             <div className="absolute -left-28 w-24 text-right">
               {sortedExperiences.map((exp, index) => {
                 const isActive = exp.id === activeExperienceId;
@@ -236,6 +296,14 @@ export const ExperienceTimeline = () => {
           >
             <ChevronDown className="h-4 w-4" />
           </button>
+          
+          {/* Scroll indicator - appears when at boundaries */}
+          {isAtBoundary && (
+            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs text-muted-foreground animate-bounce">
+              <ChevronDown className="h-4 w-4" />
+              <span className="sr-only">Continue scrolling</span>
+            </div>
+          )}
         </div>
         
         {/* Experience card on the right */}
@@ -291,7 +359,10 @@ export const ExperienceTimeline = () => {
       
       {/* Full-width interaction overlay - invisible but captures mouse events across the entire width */}
       <div 
-        className="absolute inset-0 w-full z-0 cursor-ns-resize"
+        className={cn(
+          "absolute inset-0 w-full z-0",
+          isAtBoundary ? "cursor-default" : "cursor-ns-resize"
+        )}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
