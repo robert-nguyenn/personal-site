@@ -225,10 +225,10 @@ export const ProjectsSection = () => {
         onClick={() => handleDotClick(index)}
         disabled={isTransitioning}
         className={cn(
-          "w-3 h-3 rounded-full transition-all duration-300 transform",
+          "w-2 h-2 rounded-full transition-all duration-300 transform",
           activeIndex === index
-            ? "bg-primary scale-125 shadow-lg shadow-primary/40" 
-            : "bg-primary/30 hover:bg-primary/60 hover:scale-110",
+            ? "bg-yellow-400 scale-125 shadow-lg shadow-primary/40" 
+            : "bg-yellow-400/60 hover:bg-yellow-400/90 hover:scale-110",
           isTransitioning && "cursor-not-allowed"
         )}
         aria-label={`Go to project ${index + 1}`}
@@ -245,13 +245,13 @@ export const ProjectsSection = () => {
               Projects
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-4xl mx-auto font-bold">
             A collection of projects that demonstrate my skills and experience in different areas of software development.
           </p>
         </div>
 
         {/* 3D Carousel Container */}
-        <div className="relative h-[600px] mb-10 overflow-visible">
+        <div className="relative h-[600px] mb-5 overflow-visible">
           {/* Perspective container for 3D effect */}
           <div 
             className="relative w-full h-full"
