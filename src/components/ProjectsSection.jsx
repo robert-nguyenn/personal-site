@@ -48,28 +48,7 @@ const projects = [
       github: "https://github.com/yourusername/project"
     }
   },
-  {
-    id: 5,
-    title: "Personal Finance Tracker",
-    description: "An application to help users manage expenses, set budgets, and visualize spending patterns with detailed reports.",
-    image: "https://images.unsplash.com/photo-1565514020179-026b92b962c9?q=80&w=1470&auto=format&fit=crop",
-    tags: ["React", "Chart.js", "Firebase", "Redux"],
-    links: {
-      demo: "https://example.com/demo",
-      github: "https://github.com/yourusername/project"
-    }
-  },
-  {
-    id: 6,
-    title: "API Gateway Service",
-    description: "A microservice gateway that handles routing, load balancing, authentication, and rate limiting for a distributed system.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1470&auto=format&fit=crop",
-    tags: ["Node.js", "Docker", "Kubernetes", "Redis"],
-    links: {
-      demo: "https://example.com/demo",
-      github: "https://github.com/yourusername/project"
-    }
-  }
+
 ];
 
 export const ProjectsSection = () => {
@@ -193,9 +172,8 @@ export const ProjectsSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Featured <span className="text-primary relative inline-block">
+            Featured <span className="text-blue-500 relative inline-block">
               Projects
-              <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
             </span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">

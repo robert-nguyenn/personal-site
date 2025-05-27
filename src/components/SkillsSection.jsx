@@ -300,47 +300,16 @@ export const SkillsSection = () => {
             <div className="flex justify-center mt-10">
               <button 
                 onClick={loadMoreSkills}
-                className="group flex items-center gap-1 px-6 py-3 bg-card hover:bg-primary/10 border-2 border-primary/30 rounded-full transition-all duration-300 hover:shadow-lg"
+                className="cosmic-button group px-8 py-3 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-white font-medium transition-all hover:border-primary/50"
               >
-                <span className="font-bold text-primary">Load More Skills</span>
-                <ChevronDown className="h-4 w-4 text-primary group-hover:animate-bounce" />
+                <span className="relative z-10 flex items-center gap-2">
+                  <span>Load More Skills</span>
+                  <ChevronDown className="h-4 w-4 transition-transform" />
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-purple-500/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </button>
             </div>
           )}
-
-          {/* Skills summary stats with simplified categories */}
-          <div className="mt-16 bg-dark/80 dark:bg-gray-900/90 p-8 rounded-xl backdrop-blur-lg border border-primary/20 shadow-xl">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
-                <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
-                <div className="relative">
-                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "frontend").length}</h3>
-                  <p className="text-foreground">Frontend</p>
-                </div>
-              </div>
-              <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
-                <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
-                <div className="relative">
-                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "backend").length}</h3>
-                  <p className="text-foreground">Backend</p>
-                </div>
-              </div>
-              <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
-                <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
-                <div className="relative">
-                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "database").length}</h3>
-                  <p className="text-foreground">Database</p>
-                </div>
-              </div>
-              <div className="p-5 relative bg-gradient-to-b from-transparent to-primary/5 rounded-lg">
-                <div className="absolute inset-0 bg-primary/5 rounded-lg filter blur-md"></div>
-                <div className="relative">
-                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{skills.filter(s => s.category === "devops").length}</h3>
-                  <p className="text-foreground">DevOps</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
     </section>
   );
