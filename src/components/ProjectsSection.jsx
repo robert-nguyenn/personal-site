@@ -184,7 +184,6 @@ export const ProjectsSection = () => {
         opacity: 1,
         zIndex: 10,
         filter: "brightness(1) contrast(1.25)",
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(139, 92, 246, 0.3)"
       },
       '1': {
         transform: "translateX(55%) rotateY(-25deg) scale(0.80)",
@@ -264,7 +263,7 @@ export const ProjectsSection = () => {
                 <div
                   key={project.key}
                   className={cn(
-                    "absolute left-1/2 top-1/2 w-full md:w-[420px] h-[520px]",
+                    "absolute left-1/2 top-1/2 w-full md:w-[420px] h-[520px] rounded-2xl",
                     "-translate-x-1/2 -translate-y-1/2",
                     isClickable && "cursor-pointer hover:brightness-110"
                   )}
@@ -276,20 +275,25 @@ export const ProjectsSection = () => {
                 >
                   {/* Project Card */}
                   <div className="relative group rounded-2xl overflow-hidden h-full shadow-2xl">
-                    {/* Card background with gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 to-gray-800/95 backdrop-blur-sm z-0"></div>
+                    {/* Card background with conditional styling */}
+                    <div className={cn(
+                      "absolute inset-0 backdrop-blur-sm z-0 rounded-2xl",
+                      project.position === 0 
+                        ? "bg-gradient-to-br from-gray-900/95 to-gray-800/90" 
+                        : "bg-gradient-to-br from-gray-900/80 to-gray-800/70"
+                    )}></div>
                     
                     {/* Glow effect for center card */}
                     {project.position === 0 && (
-                      <div className="absolute -inset-1 bg-gradient-to-br from-primary/40 to-purple-500/40 rounded-2xl blur-sm opacity-60"></div>
+                      <div className="absolute inset-0 bg-purple-400/40 rounded-2xl blur-sm opacity-60"></div>
                     )}
                     
                     {/* Card content */}
-                    <div className="relative z-10 h-full flex flex-col border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
+                    <div className="relative z-10 h-full flex flex-col border-2 border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
                       {/* Project Image */}
                       <div className="h-[240px] relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 z-10"></div>
-                        <img 
+                        <img  
                           src={project.image} 
                           alt={project.title}
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
@@ -358,38 +362,10 @@ export const ProjectsSection = () => {
             })}
           </div>
           
-          {/* Navigation Controls */}
-          <button 
-            onClick={handlePrev}
-            disabled={isTransitioning}
-            className={cn(
-              "absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full",
-              "bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white",
-              "hover:bg-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/30 group",
-              "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-black/40 disabled:hover:border-white/20"
-            )}
-            aria-label="Previous project"
-          >
-            <ChevronLeft className="h-6 w-6 group-hover:scale-110 transition-transform group-disabled:scale-100" />
-          </button>
-          
-          <button 
-            onClick={handleNext}
-            disabled={isTransitioning}
-            className={cn(
-              "absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full",
-              "bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white",
-              "hover:bg-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/30 group",
-              "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-black/40 disabled:hover:border-white/20"
-            )}
-            aria-label="Next project"
-          >
-            <ChevronRight className="h-6 w-6 group-hover:scale-110 transition-transform group-disabled:scale-100" />
-          </button>
         </div>
         
         {/* Dot Indicators */}
-        <div className="flex justify-center gap-3 mt-8">
+        <div className="flex justify-center gap-3 mt-5">
           {renderDots()}
         </div>
 
