@@ -121,12 +121,11 @@ export const ContactSection = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-            Get In <span className="text-primary relative inline-block">
+            Get In <span className="text-blue-500 relative inline-block">
               Touch
-              <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
             I'm always open to discussing new projects, opportunities and collaborations.
           </p>
         </div>
@@ -243,7 +242,7 @@ export const ContactSection = () => {
               shake ? "animate-pulse" : ""
             )}>
               {/* Floating message icon */}
-              <div className="absolute -top-8 -right-8 w-16 h-16 flex items-center justify-center bg-primary rounded-2xl shadow-lg rotate-12 transform hover:rotate-0 transition-transform duration-300 group">
+              <div className="absolute -top-8 -right-8 w-16 h-16 flex items-center justify-center bg-blue-400 rounded-2xl shadow-lg rotate-12 transform hover:rotate-0 transition-transform duration-300 group">
                 <Send className="h-6 w-6 text-white transform -rotate-12 group-hover:rotate-0 transition-transform" />
               </div>
 

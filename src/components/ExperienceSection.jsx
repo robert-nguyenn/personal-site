@@ -13,12 +13,11 @@ export const ExperienceSection = () => {
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Professional <span className="text-primary relative inline-block">
+            Professional <span className="text-blue-500 relative inline-block">
               Experience
-              <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
             Scroll through my professional journey
           </p>
         </div>
@@ -27,17 +26,7 @@ export const ExperienceSection = () => {
           {/* Experience timeline component */}
           <ExperienceTimeline />
         </div>
-        
-        <div className="mt-16 text-center">
-          <a 
-            href="/resume.pdf" 
-            download 
-            className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:shadow-md hover:shadow-primary/20 inline-flex items-center justify-center gap-2 group"
-          >
-            <Briefcase className="h-4 w-4" />
-            <span>Download Full Resume</span>
-          </a>
-        </div>
+    
       </div>
     </section>
   );

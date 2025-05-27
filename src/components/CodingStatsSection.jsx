@@ -13,12 +13,11 @@ export const CodingStatsSection = () => {
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Problem <span className="text-primary relative inline-block">
+            Problem <span className="text-blue-500 relative inline-block">
               Solving
-              <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
             Track my journey through algorithmic challenges and competitive programming
           </p>
         </div>
