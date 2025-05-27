@@ -264,19 +264,24 @@ export const ExperienceTimeline = () => {
               );
             })}
             
-            {/* Current date indicator */}
+            {/* Current date indicator - FIXED DATE ALIGNMENT */}
             <div className="absolute -left-28 w-24 text-right">
               {sortedExperiences.map((exp, index) => {
                 const isActive = exp.id === activeExperienceId;
                 const position = ((sortedExperiences.length - 1 - index) / (sortedExperiences.length - 1)) * 100;
                 
+                // Extract dates to properly format them
+                const periodParts = exp.period.split(" - ");
+                
                 return isActive ? (
                   <div 
                     key={`date-${exp.id}`}
-                    className="absolute transform -translate-y-1/2 text-xs font-medium text-primary transition-all duration-300"
+                    className="absolute transform -translate-y-1/2 text-xs font-medium text-primary transition-all duration-300 whitespace-nowrap"
                     style={{ top: `${position}%` }}
                   >
-                    {exp.period}
+                    {periodParts[0]}
+                    <br />
+                    {periodParts[1] || ""}
                   </div>
                 ) : null;
               })}
@@ -320,14 +325,19 @@ export const ExperienceTimeline = () => {
                 )}
               >
                 <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-2xl p-5 shadow-xl flex flex-col">
+                  {/* Header with company name and building icon */}
                   <div className="flex flex-col mb-4 border-b border-primary/10 pb-4">
-                    <h3 className="text-xl font-bold text-foreground">{experience.company}</h3>
+                    <div className="flex items-center gap-2">
+                      <Building2 className="h-4 w-4 text-primary" />
+                      <h3 className="text-xl font-bold text-foreground">{experience.company}</h3>
+                    </div>
                     <div className="flex items-center mt-1 text-primary font-medium">
                       {experience.position}
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 mb-4">
+                  {/* Details section - date and location */}
+                  <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2 text-muted-foreground text-sm">
                       <Calendar className="h-3.5 w-3.5 text-primary" />
                       <span>{experience.period}</span>
@@ -338,13 +348,9 @@ export const ExperienceTimeline = () => {
                     </div>
                   </div>
                   
+                  {/* Footer - just showing card number */}
                   <div className="mt-auto pt-4 border-t border-primary/10">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-sm text-primary">
-                        <Building2 className="h-3.5 w-3.5" />
-                        <span className="font-medium">{experience.company}</span>
-                      </div>
-                      
+                    <div className="flex items-center justify-end">
                       <span className="text-xs text-muted-foreground">
                         {`${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
                       </span>
