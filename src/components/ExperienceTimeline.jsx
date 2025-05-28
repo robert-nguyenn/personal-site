@@ -1,11 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Coffee, Clock } from 'lucide-react';
+import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Clock } from 'lucide-react';
 import { cn } from "../lib/utils";
-// At the top of your file, add this import
 import csResearchLogo from '../assets/cs_research.png';
 
 export const ExperienceTimeline = () => {
-  // Professional experience data with added logo paths, skills, and fun facts
+  // Professional experience data with added logo paths, skills, and noteworthy achievements
   const experiences = [
     {
       id: 1,
@@ -14,7 +13,7 @@ export const ExperienceTimeline = () => {
       period: "Dec 2024 - May 2025",
       logo: "/logos/theta-zeta.png",
       skills: ["React", "Node.js", "AWS", "Django", "PostgreSQL", "RESTful APIs", "Docker", "Terraform", "Git", "GitHub", "GitLab", "CI/CD", "Agile Methodologies", "Playwright", "Scrum", "Tailwind CSS"],
-      funFact: "Broke the build only twice. Personal record!"
+      achievement: "Implemented automated testing that reduced QA time by 30% and improved release reliability."
     },
     {
       id: 2,
@@ -23,7 +22,7 @@ export const ExperienceTimeline = () => {
       period: "May 2024 - Nov 2024",
       logo: "/logos/noretek.png",
       skills: ["Angular", "TypeScript", "Docker", "Tailwind CSS", "MySQL", "AWS", "DynamoDB", "AWS Lambda", "AWS API Gateway"],
-      funFact: "Survived six months without dropping the production database. Achievement unlocked!"
+      achievement: "Developed a dashboard feature that increased client visibility into system performance, reducing support tickets by 25%."
     },
     {
       id: 3,
@@ -32,11 +31,11 @@ export const ExperienceTimeline = () => {
       period: "Jan 2024 - May 2024", 
       logo: csResearchLogo,
       skills: ["Python", "Pandas", "Numpy", "Regex", "Matplotlib", "Seaborn", "Plotly", "Google Colab", "Machine Learning", "Data Analysis"],
-      funFact: "My code once analyzed 10,000 data points and concluded coffee consumption correlates with code quality."
+      achievement: "Analyzed over 10,000 data points to identify patterns in user behavior, contributing to a published research paper."
     }
   ];
   
-  // Get the appropriate icon for each experience type with clever labels
+  // Get the appropriate icon for each experience type
   const getExperienceIcon = (company) => {
     if (company.includes("College") || company.includes("Department")) {
       return <BookOpen className="h-5 w-5 text-red-400" />;
@@ -47,7 +46,6 @@ export const ExperienceTimeline = () => {
     }
   };
   
-  // Rest of your component code remains unchanged
   const sortedExperiences = [...experiences].sort((a, b) => a.id - b.id);
   
   // References and state
@@ -59,7 +57,7 @@ export const ExperienceTimeline = () => {
   const [logoTransitioning, setLogoTransitioning] = useState(false);
   const timelineRef = useRef(null);
   const containerRef = useRef(null);
-  const imageContainerRef = useRef(null); // New ref for the image container
+  const imageContainerRef = useRef(null);
   const scrollTimeoutRef = useRef(null);
   const previousLogoRef = useRef(null);
   
@@ -266,11 +264,11 @@ export const ExperienceTimeline = () => {
       className="relative py-12 select-none w-full"
       onMouseLeave={handleMouseUp}
     >
-      {/* Center content with grid layout - TWO COLUMN LAYOUT */}
+      {/* Center content with grid layout */}
       <div className="max-w-6xl mx-auto">
-        {/* Two column grid layout with REDUCED GAP */}
+        {/* Two column grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
-          {/* Left column - Timeline and cards (40% width on desktop) */}
+          {/* Left column - Timeline and cards */}
           <div className="md:col-span-2 flex flex-col items-center">
             <div className="flex gap-6 w-full max-w-md">
               {/* Vertical timeline */}
@@ -290,7 +288,7 @@ export const ExperienceTimeline = () => {
                   <ChevronUp className="h-4 w-4" />
                 </button>
 
-                {/* Hint text for scrolling - new addition */}
+                {/* Navigation hint */}
                 <div className="absolute -left-16 top-1/2 -translate-y-1/2 text-xs text-muted-foreground whitespace-nowrap">
                   <span className="bg-background/70 px-2 py-1 rounded-full backdrop-blur-sm">
                     Scroll <ChevronDown className="h-3 w-3 inline" />
@@ -349,7 +347,7 @@ export const ExperienceTimeline = () => {
                   <ChevronDown className="h-4 w-4" />
                 </button>
                 
-                {/* Scroll indicator - appears when at boundaries */}
+                {/* Scroll indicator */}
                 {isAtBoundary && (
                   <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs text-muted-foreground animate-bounce">
                     <ChevronDown className="h-4 w-4" />
@@ -383,20 +381,20 @@ export const ExperienceTimeline = () => {
                           </div>
                         </div>
                         
-                        {/* Fun fact - new addition */}
+                        {/* Key achievement section */}
                         <div className="mb-2 p-2 bg-primary/5 rounded-lg">
                           <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                            <Coffee className="h-3.5 w-3.5 text-amber-400" />
-                            <span className="font-medium">Coffee-Fueled Achievement</span>
+                            <Award className="h-3.5 w-3.5 text-amber-400" />
+                            <span className="font-medium">Key Achievement</span>
                           </div>
-                          <p className="text-xs text-foreground italic">"{experience.funFact}"</p>
+                          <p className="text-xs text-foreground">{experience.achievement}</p>
                         </div>
                         
-                        {/* Skills section with improved icon */}
+                        {/* Skills section */}
                         <div className="mb-2">
                           <div className="flex items-center gap-1.5 mb-1.5 text-xs text-muted-foreground">
                             <Code2 className="h-3.5 w-3.5 text-violet-400" />
-                            <span className="font-medium">Tech Wizardry</span>
+                            <span className="font-medium">Technologies Used</span>
                           </div>
                           <div className="flex flex-wrap gap-1.5">
                             {experience.skills.map((skill, index) => (
@@ -410,7 +408,7 @@ export const ExperienceTimeline = () => {
                           </div>
                         </div>
                         
-                        {/* Date information with improved calendar icon */}
+                        {/* Date information */}
                         <div className="flex items-center text-xs mt-auto">
                           <div className="flex items-center gap-1 text-muted-foreground">
                             <Clock className="h-4 w-4 text-amber-400" />
@@ -418,11 +416,11 @@ export const ExperienceTimeline = () => {
                           </div>
                         </div>
                         
-                        {/* Footer - just showing card number */}
+                        {/* Experience number */}
                         <div className="mt-2 pt-2 border-t border-primary/10">
                           <div className="flex items-center justify-end">
                             <span className="text-[10px] text-muted-foreground">
-                              {`Episode ${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
+                              {`Position ${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
                             </span>
                           </div>
                         </div>
@@ -434,7 +432,7 @@ export const ExperienceTimeline = () => {
             </div>
           </div>
           
-          {/* Right column - Logo display (60% width on desktop) - SIGNIFICANTLY IMPROVED IMAGE DISPLAY */}
+          {/* Right column - Logo display */}
           <div 
             ref={imageContainerRef} 
             className="md:col-span-3 flex justify-center items-center"
@@ -457,7 +455,7 @@ export const ExperienceTimeline = () => {
         </div>
       </div>
       
-      {/* Full-width interaction overlay - MODIFIED to not capture events over image */}
+      {/* Full-width interaction overlay */}
       <div 
         className={cn(
           "absolute inset-0 w-full z-0",
