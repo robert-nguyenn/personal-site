@@ -7,11 +7,11 @@ export const ExperienceTimeline = () => {
   const experiences = [
     {
       id: 1,
-      company: "Theta Zeta Consulting, LLC",
+      company: "Theta Zero Consulting, LLC",
       position: "Software Engineer Intern",
       period: "Dec 2024 - May 2025",
       logo: "/logos/theta-zeta.png",
-      skills: ["React", "Node.js", "AWS"]
+      skills: ["React", "Node.js", "AWS", "Django", "PostgreSQL", "RESTful APIs", "Docker", "Terraform", "Git", "GitHub", "GitLab", "CI/CD", "Agile Methodologies", "Playwright", "Scrum", "Tailwind CSS"] 
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export const ExperienceTimeline = () => {
       position: "Software Developer Intern",
       period: "May 2024 - Nov 2024",
       logo: "/logos/noretek.png",
-      skills: ["Angular", "TypeScript", "Docker"]
+      skills: ["Angular", "TypeScript", "Docker", "Tainwind CSS", "MySQL", "AWS", "DynamoDB", "AWS Lambda", "AWS API Gateway"]
     },
     {
       id: 3,
@@ -27,14 +27,14 @@ export const ExperienceTimeline = () => {
       position: "Research Assistant",
       period: "Jan 2024 - May 2024", 
       logo: "/logos/centre-college.png",
-      skills: ["Python", "Machine Learning", "Data Analysis"]
+      skills: ["Python", "Pandas", "Numpy", "Regex", "Matplotlib", "Seaborn", "Ploty", "Google Colab", "Machine Learning", "Data Analysis"]
     }
   ];
   
   // Get the appropriate icon for each experience type
   const getExperienceIcon = (company) => {
     if (company.includes("College") || company.includes("Department")) {
-      return <BookOpen className="h-5 w-5 text-indigo-400" />;
+      return <BookOpen className="h-5 w-5 text-red-400" />;
     } else if (company.includes("Consulting")) {
       return <Briefcase className="h-5 w-5 text-emerald-400" />;
     } else {
@@ -359,7 +359,7 @@ export const ExperienceTimeline = () => {
                             {experience.skills.map((skill, index) => (
                               <span 
                                 key={index} 
-                                className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full"
+                                className="text-xs bg-primary/20 text-blue-400 px-2 py-0.5 rounded-full"
                               >
                                 {skill}
                               </span>
