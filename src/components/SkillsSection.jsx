@@ -5,7 +5,9 @@ import {
   ServerCog,
   Database, 
   Cpu,
-  ChevronDown
+  ChevronDown,
+  Wrench,
+  Zap
 } from "lucide-react";
 import { cn } from "../lib/utils";
 
@@ -105,13 +107,13 @@ export const SkillsSection = () => {
     setVisibleCount(prev => Math.min(prev + 6, skills.length)); // Load 6 more skills
   };
 
-  // Get expertise level description 
+  // Get expertise level description with more personality
   const getExpertiseLevel = (level) => {
-    if (level >= 90) return "Expert";
-    if (level >= 80) return "Advanced";
-    if (level >= 70) return "Proficient";
-    if (level >= 60) return "Intermediate";
-    return "Beginner";
+    if (level >= 90) return "Wizard";
+    if (level >= 80) return "Ninja";
+    if (level >= 70) return "Pro";
+    if (level >= 60) return "Solid";
+    return "Learning";
   };
 
   // Get color class based on level
@@ -123,13 +125,13 @@ export const SkillsSection = () => {
     return "bg-gradient-to-r from-yellow-500 to-primary";
   };
   
-  // Get category label
+  // Get category label with more personality
   const getCategoryLabel = (category) => {
     const labels = {
-      frontend: "Frontend",
-      backend: "Backend",
-      database: "Database",
-      devops: "DevOps"
+      frontend: "Pixel Pusher",
+      backend: "Server Whisperer",
+      database: "Data Wrangler",
+      devops: "Pipeline Plumber"
     };
     return labels[category] || category;
   };
@@ -145,16 +147,16 @@ export const SkillsSection = () => {
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">
-              My <span className="text-blue-500 relative inline-block">
-                Skills
+              Tech <span className="text-blue-500 relative inline-block">
+                Arsenal
               </span>
             </h2>
-            <p className="mt-4 text-muted-foreground font-bold max-w-3xl mx-auto">
-              A collection of technologies I've mastered through years of practice and professional work.
+            <p className="mt-4 text-muted-foreground max-w-3xl mx-auto font-bold">
+              My collection of digital superpowers acquired during suspicious amounts of "free time"
             </p>
           </div>
 
-          {/* Simplified Category Filters */}
+          {/* Category Filters with more personality */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             <button
               onClick={() => setActiveCategory("all")}
@@ -169,7 +171,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <LayoutGrid className="w-4 h-4 text-purple-400" strokeWidth={2} />
                 </div>
-                All Skills
+                The Entire Toolbox
               </span>
             </button>
             <button
@@ -185,7 +187,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <FileCode className="w-4 h-4 text-blue-400" strokeWidth={2} />
                 </div>
-                Frontend
+                Pixel Crafting
               </span>
             </button>
             <button
@@ -201,7 +203,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <ServerCog className="w-4 h-4 text-green-400" strokeWidth={2} />
                 </div>
-                Backend
+                Server Magic
               </span>
             </button>
             <button
@@ -217,7 +219,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <Database className="w-4 h-4 text-orange-400" strokeWidth={2} />
                 </div>
-                Database
+                Data Hoarding
               </span>
             </button>
             <button
@@ -233,13 +235,41 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <Cpu className="w-4 h-4 text-red-400" strokeWidth={2} />
                 </div>
-                DevOps
+                Cloud Wrangling
               </span>
             </button>
           </div>
 
+          {/* Intro text for each category */}
+          <div className="mb-10 p-5 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/20">
+            {activeCategory === "all" && (
+              <p className="text-center italic text-muted-foreground">
+                "I've never met a framework I didn't want to learn or a language I wouldn't try at 2 AM"
+              </p>
+            )}
+            {activeCategory === "frontend" && (
+              <p className="text-center italic text-muted-foreground">
+                "Making interfaces so intuitive that users think they designed them themselves"
+              </p>
+            )}
+            {activeCategory === "backend" && (
+              <p className="text-center italic text-muted-foreground">
+                "Where I build the invisible parts that everyone notices when they break"
+              </p>
+            )}
+            {activeCategory === "database" && (
+              <p className="text-center italic text-muted-foreground">
+                "I speak fluent SQL and have strong opinions about database normalization"
+              </p>
+            )}
+            {activeCategory === "devops" && (
+              <p className="text-center italic text-muted-foreground">
+                "Automating myself out of a job, one pipeline at a time"
+              </p>
+            )}
+          </div>
 
-          {/* Enhanced Skills Grid with improved visibility */}
+          {/* Skills Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleSkills.map((skill) => (
               <div 
@@ -303,13 +333,20 @@ export const SkillsSection = () => {
                 className="cosmic-button group px-8 py-3 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-white font-medium transition-all hover:border-primary/50"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  <span>Load More Skills</span>
-                  <ChevronDown className="h-4 w-4 transition-transform" />
+                  <span>Show Me More Weapons</span>
+                  <Zap className="h-4 w-4 transition-transform" />
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-purple-500/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </button>
             </div>
           )}
+
+          {/* Bottom quote */}
+          <div className="mt-16 text-center">
+            <p className="text-sm text-muted-foreground italic">
+              "Yes, I could have spent this time watching Netflix instead of learning Terraform, but where's the fun in that?"
+            </p>
+          </div>
         </div>
     </section>
   );
