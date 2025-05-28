@@ -16,7 +16,7 @@ export const AboutSection = () => {
               Me
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto font-bold">
             I overthink simple problems until they become interesting ones
           </p>
         </div>

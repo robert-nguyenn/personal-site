@@ -17,21 +17,17 @@ export const ExperienceSection = () => {
               Adventures
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto font-bold">
             Places where I turned caffeine into code and meetings into milestones
           </p>
         </div>
 
         {/* Timeline intro box with personality */}
         <div className="mb-12 mx-auto max-w-2xl p-5 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/20 text-center">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Coffee className="h-5 w-5 text-primary" />
-            <Rocket className="h-5 w-5 text-blue-400" />
-            <Coffee className="h-5 w-5 text-primary" />
-          </div>
-          <p className="text-sm italic text-muted-foreground">
+          <p className="flex items-center justify-center text-sm italic text-muted-foreground">
             "Drag the timeline to explore my journey from 'what's a function?' to 'I can debug that in my sleep.' 
             Scrolling also works, but dragging feels more dramatic."
+            <Rocket className="h-6 w-6 text-blue-400" />
           </p>
         </div>
 
