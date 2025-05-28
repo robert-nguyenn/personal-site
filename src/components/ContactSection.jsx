@@ -166,7 +166,7 @@ export const ContactSection = () => {
                       <div className="text-left">
                         <p className="text-sm text-muted-foreground">Email</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
-                          robert@nguyenn.com
+                          robert.nguyenanh@gmail.com
                         </p>
                       </div>
                       <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 ml-auto text-primary" />
@@ -182,7 +182,7 @@ export const ContactSection = () => {
                       <div className="text-left">
                         <p className="text-sm text-muted-foreground">Phone</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
-                          +1 (415) 555-7890
+                          +1 (859) 691-8194
                         </p>
                       </div>
                       <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 ml-auto text-primary" />
@@ -195,7 +195,7 @@ export const ContactSection = () => {
                       <div className="text-left">
                         <p className="text-sm text-muted-foreground">Location</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
-                          San Francisco, CA
+                          Danville, KY
                         </p>
                       </div>
                     </div>
@@ -218,7 +218,7 @@ export const ContactSection = () => {
                     <h4 className="text-lg font-medium mb-4 text-foreground">Professional Networks</h4>
                     <div className="flex gap-4 justify-center">
                       <a
-                        href="https://github.com/robertnguyenn"
+                        href="https://github.com/robert-nguyenn"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors hover:scale-110 transform duration-300"
@@ -227,22 +227,13 @@ export const ContactSection = () => {
                         <Github className="h-5 w-5 text-blue-400" />
                       </a>
                       <a
-                        href="https://linkedin.com/in/robert-nguyen"
+                        href="https://www.linkedin.com/in/robert-nguyenn/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors hover:scale-110 transform duration-300"
                         aria-label="LinkedIn"
                       >
                         <Linkedin className="h-5 w-5 text-blue-400" />
-                      </a>
-                      <a
-                        href="https://twitter.com/robertnguyenn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors hover:scale-110 transform duration-300"
-                        aria-label="Twitter"
-                      >
-                        <Twitter className="h-5 w-5 text-blue-400" />
                       </a>
                     </div>
                   </div>

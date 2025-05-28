@@ -40,13 +40,11 @@ export const Footer = () => {
         {/* Bottom section with copyright */}
         <div className="border-t border-blue-400 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Robert Nguyen. No bugs were harmed in the making of this site.
+            © {currentYear} Robert Nguyen.
           </p>
           
           <p className="flex items-center text-sm gap-2 mt-2 md:mt-0 text-muted-foreground">
             <span>Powered by</span>  
-            <Coffee className="h-4 w-4 text-primary" /> 
-            <span>+</span> 
             <Heart className="h-4 w-4 text-red-500 inline-block animate-pulse" fill="currentColor" /> 
             <span>+ React</span>
           </p>
