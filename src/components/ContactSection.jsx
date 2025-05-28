@@ -129,7 +129,7 @@ export const ContactSection = () => {
               Connect
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
             Have a project that needs some coding magic? Or just want to chat about why tabs are superior to spaces? Drop me a line!
           </p>
         </div>
@@ -160,7 +160,7 @@ export const ContactSection = () => {
                       href="mailto:robert@nguyenn.com"
                       className="flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-primary/5 group"
                     >
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <div className="p-3 rounded-full bg-white/90 group-hover:bg-primary/20 transition-colors">
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
@@ -176,7 +176,7 @@ export const ContactSection = () => {
                       href="tel:+14155557890"
                       className="flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-primary/5 group"
                     >
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <div className="p-3 rounded-full bg-white/90 group-hover:bg-primary/20 transition-colors">
                         <Phone className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
@@ -189,7 +189,7 @@ export const ContactSection = () => {
                     </a>
                     
                     <div className="flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-primary/5 group">
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <div className="p-3 rounded-full bg-white/90 group-hover:bg-primary/20 transition-colors">
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
@@ -201,7 +201,7 @@ export const ContactSection = () => {
                     </div>
 
                     <div className="flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-primary/5 group">
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <div className="p-3 rounded-full bg-white/90 group-hover:bg-primary/20 transition-colors">
                         <Coffee className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
@@ -224,7 +224,7 @@ export const ContactSection = () => {
                         className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors hover:scale-110 transform duration-300"
                         aria-label="GitHub"
                       >
-                        <Github className="h-5 w-5 text-primary" />
+                        <Github className="h-5 w-5 text-blue-400" />
                       </a>
                       <a
                         href="https://linkedin.com/in/robert-nguyen"
@@ -233,7 +233,7 @@ export const ContactSection = () => {
                         className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors hover:scale-110 transform duration-300"
                         aria-label="LinkedIn"
                       >
-                        <Linkedin className="h-5 w-5 text-primary" />
+                        <Linkedin className="h-5 w-5 text-blue-400" />
                       </a>
                       <a
                         href="https://twitter.com/robertnguyenn"
@@ -242,7 +242,7 @@ export const ContactSection = () => {
                         className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors hover:scale-110 transform duration-300"
                         aria-label="Twitter"
                       >
-                        <Twitter className="h-5 w-5 text-primary" />
+                        <Twitter className="h-5 w-5 text-blue-400" />
                       </a>
                     </div>
                   </div>

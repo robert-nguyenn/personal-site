@@ -17,7 +17,7 @@ export const CodingStatsSection = () => {
               Therapy
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
             Where I voluntarily solve problems that nobody asked for
           </p>
         </div>
@@ -32,7 +32,7 @@ export const CodingStatsSection = () => {
           <div className="space-y-6 order-1 md:order-2">
             <div className="gradient-border p-5 card-hover backdrop-blur-sm group">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <div className="p-3 rounded-xl bg-white/90 group-hover:bg-primary/20 transition-colors">
                   <BrainCircuit className="h-5 w-5 text-primary"/>
                 </div>
                 <div className="text-left">
@@ -46,7 +46,7 @@ export const CodingStatsSection = () => {
 
             <div className="gradient-border p-5 card-hover backdrop-blur-sm group">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <div className="p-3 rounded-xl bg-white/90 group-hover:bg-primary/20 transition-colors">
                   <Coffee className="h-5 w-5 text-primary"/>
                 </div>
                 <div className="text-left">
