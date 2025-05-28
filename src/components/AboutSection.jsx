@@ -20,10 +20,10 @@ export const AboutSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side */}
-          <div className="space-y-6 backdrop-blur-sm">
-            <h3 className="text-2xl font-semibold flex items-center">
-              <span className="bg-primary/10 p-2 rounded-lg mr-3">
-                <Server className="h-5 w-5 text-primary"/>
+          <div className="space-y-6">
+            <h3 className="text-2xl font-semibold flex items-center justify-center">
+              <span className="p-2 rounded-lg mr-3">
+                <Server className="h-5 w-5 text-blue-400"/>
               </span>
               <span>Code Wrangler & Bug Whisperer</span>
             </h3>
@@ -61,7 +61,7 @@ export const AboutSection = () => {
           <div className="grid grid-cols-1 gap-6">
             <div className="gradient-border p-6 card-hover backdrop-blur-sm group">
               <div className="flex items-start gap-5">
-                <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <div className="p-3 rounded-xl bg-white/90 transition-colors">
                   <Code className="h-6 w-6 text-primary"/>
                 </div>
                 <div className="text-left">
@@ -75,7 +75,7 @@ export const AboutSection = () => {
             
             <div className="gradient-border p-6 card-hover backdrop-blur-sm group">
               <div className="flex items-start gap-5">
-                <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <div className="p-3 rounded-xl bg-white/90 transition-colors">
                   <User className="h-6 w-6 text-primary"/>
                 </div>
                 <div className="text-left">
@@ -89,7 +89,7 @@ export const AboutSection = () => {
             
             <div className="gradient-border p-6 card-hover backdrop-blur-sm group">
               <div className="flex items-start gap-5">
-                <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <div className="p-3 rounded-xl bg-white/90 transition-colors">
                   <Briefcase className="h-6 w-6 text-primary"/>
                 </div>
                 <div className="text-left">
