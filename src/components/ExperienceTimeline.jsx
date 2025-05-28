@@ -1,37 +1,48 @@
 import { useState, useRef, useEffect } from 'react';
-import { Building2, Calendar, MapPin, ChevronUp, ChevronDown } from 'lucide-react';
+import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen } from 'lucide-react';
 import { cn } from "../lib/utils";
 
 export const ExperienceTimeline = () => {
-  // Professional experience data with added logo paths
+  // Professional experience data with added logo paths and skills
   const experiences = [
     {
       id: 1,
       company: "Theta Zeta Consulting, LLC",
       position: "Software Engineer Intern",
-      period: "Dec 2023 - Present",
-      location: "Lexington, KY",
-      logo: "/logos/theta-zeta.png" // Add your actual logo paths here
+      period: "Dec 2024 - May 2025",
+      logo: "/logos/theta-zeta.png",
+      skills: ["React", "Node.js", "AWS"]
     },
     {
       id: 2,
-      company: "Noretek Technology, JSC",
-      position: "Software Developer",
-      period: "May 2023 - Nov 2023",
-      location: "Hanoi, Vietnam",
-      logo: "/logos/noretek.png" // Add your actual logo paths here
+      company: "Novatek Technology, JSC",
+      position: "Software Developer Intern",
+      period: "May 2024 - Nov 2024",
+      logo: "/logos/noretek.png",
+      skills: ["Angular", "TypeScript", "Docker"]
     },
     {
       id: 3,
-      company: "Centre College - Computer Science Department",
+      company: "Centre - Computer Science Department",
       position: "Research Assistant",
-      period: "Jan 2023 - May 2023", 
-      location: "Danville, KY",
-      logo: "/logos/centre-college.png" // Add your actual logo paths here
+      period: "Jan 2024 - May 2024", 
+      logo: "/logos/centre-college.png",
+      skills: ["Python", "Machine Learning", "Data Analysis"]
     }
   ];
   
-  // Sort experiences chronologically with newest first
+  // Get the appropriate icon for each experience type
+  const getExperienceIcon = (company) => {
+    if (company.includes("College") || company.includes("Department")) {
+      return <BookOpen className="h-5 w-5 text-indigo-400" />;
+    } else if (company.includes("Consulting")) {
+      return <Briefcase className="h-5 w-5 text-emerald-400" />;
+    } else {
+      return <Award className="h-5 w-5 text-blue-400" />;
+    }
+  };
+  
+  // Rest of your component code remains unchanged
   const sortedExperiences = [...experiences].sort((a, b) => a.id - b.id);
   
   // References and state
@@ -327,10 +338,10 @@ export const ExperienceTimeline = () => {
                       )}
                     >
                       <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-3 shadow-md flex flex-col">
-                        {/* Header with company name and building icon */}
+                        {/* Header with company name and dynamic icon */}
                         <div className="flex flex-col mb-2 border-b border-primary/10 pb-2">
                           <div className="flex items-center gap-1.5">
-                            <Building2 className="h-3.5 w-3.5 text-primary" />
+                            {getExperienceIcon(experience.company)}
                             <h3 className="text-base font-bold text-foreground">{experience.company}</h3>
                           </div>
                           <div className="flex items-center mt-0.5 text-sm text-primary font-medium">
@@ -338,15 +349,29 @@ export const ExperienceTimeline = () => {
                           </div>
                         </div>
                         
-                        {/* Details section - date and location */}
-                        <div className="flex items-center gap-3 text-xs">
-                          <div className="flex items-center gap-1 text-muted-foreground">
-                            <Calendar className="h-3 w-3 text-primary" />
-                            <span>{experience.period}</span>
+                        {/* Skills section with improved icon */}
+                        <div className="mb-2">
+                          <div className="flex items-center gap-1.5 mb-1.5 text-xs text-muted-foreground">
+                            <Code2 className="h-3.5 w-3.5 text-violet-400" />
+                            <span className="font-medium">Skills</span>
                           </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {experience.skills.map((skill, index) => (
+                              <span 
+                                key={index} 
+                                className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* Date information with improved calendar icon */}
+                        <div className="flex items-center text-xs mt-auto">
                           <div className="flex items-center gap-1 text-muted-foreground">
-                            <MapPin className="h-3 w-3 text-primary" />
-                            <span>{experience.location}</span>
+                            <Calendar className="h-4 w-4 text-amber-400" />
+                            <span>{experience.period}</span>
                           </div>
                         </div>
                         
@@ -386,7 +411,7 @@ export const ExperienceTimeline = () => {
                     />
                   ) : (
                     <div className="w-48 h-48 rounded-full bg-gray-200 flex items-center justify-center">
-                      <Building2 className="h-24 w-24 text-gray-400" />
+                      <Briefcase className="h-24 w-24 text-gray-400" />
                     </div>
                   )}
                 </div>
