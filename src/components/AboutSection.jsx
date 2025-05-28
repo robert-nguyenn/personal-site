@@ -1,4 +1,5 @@
-import { Briefcase, Code, User, Monitor, Server, Coffee, Zap, Brain } from "lucide-react";
+import { Briefcase, Code, User, Monitor, Server, Coffee, Zap, Brain, Lightbulb, MessageSquare} from "lucide-react";
+
 
 export const AboutSection = () => {
   return (
@@ -25,8 +26,8 @@ export const AboutSection = () => {
           {/* Left Side */}
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold flex items-center justify-center">
-              <span className="p-2 rounded-lg bg-primary/10 mr-3">
-                <Server className="h-5 w-5 text-blue-400"/>
+              <span className="p-2 rounded-lg mr-3">
+                <Lightbulb className="h-8 w-8 text-blue-400"/>
               </span>
               <span>Problem Solver & Technology Enthusiast</span>
             </h3>
@@ -103,7 +104,7 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover backdrop-blur-sm group hover:shadow-lg transition-all duration-300">
               <div className="flex items-start gap-5">
                 <div className="p-3 rounded-xl bg-gradient-to-br from-blue-100 to-white transition-colors group-hover:from-blue-200 group-hover:to-white">
-                  <Briefcase className="h-6 w-6 text-primary"/>
+                  <MessageSquare className="h-6 w-6 text-primary"/>
                 </div>
                 <div className="text-left">
                   <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Effective Communicator</h4>

@@ -27,7 +27,7 @@ export const ExperienceSection = () => {
           <p className="flex items-center justify-center text-sm italic text-muted-foreground">
             "Every role has shaped my approach to development. The most valuable lessons 
             often came from navigating complex challenges with thoughtful teams."
-            <Clock className="h-5 w-5 ml-2 text-blue-400" />
+            <Clock className="h-10 w-10 ml-2 text-blue-400" />
           </p>
         </div>
 

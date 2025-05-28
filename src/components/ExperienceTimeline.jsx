@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Clock } from 'lucide-react';
+import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Clock, GraduationCap, Building, Star } from 'lucide-react';
 import { cn } from "../lib/utils";
 import csResearchLogo from '../assets/cs_research.png';
 
@@ -38,11 +38,11 @@ export const ExperienceTimeline = () => {
   // Get the appropriate icon for each experience type
   const getExperienceIcon = (company) => {
     if (company.includes("College") || company.includes("Department")) {
-      return <BookOpen className="h-5 w-5 text-red-400" />;
+      return <GraduationCap className="h-5 w-5 text-red-400" />;
     } else if (company.includes("Consulting")) {
       return <Briefcase className="h-5 w-5 text-emerald-400" />;
     } else {
-      return <Award className="h-5 w-5 text-blue-400" />;
+      return <Building className="h-5 w-5 text-blue-400" />;
     }
   };
   
@@ -384,7 +384,7 @@ export const ExperienceTimeline = () => {
                         {/* Key achievement section */}
                         <div className="mb-2 p-2 bg-primary/5 rounded-lg">
                           <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                            <Award className="h-3.5 w-3.5 text-amber-400" />
+                            <Star className="h-3.5 w-3.5 text-amber-400" />
                             <span className="font-medium">Key Achievement</span>
                           </div>
                           <p className="text-xs text-foreground">{experience.achievement}</p>
