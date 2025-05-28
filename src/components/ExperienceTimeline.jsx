@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
-import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen } from 'lucide-react';
+import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Coffee, Clock } from 'lucide-react';
 import { cn } from "../lib/utils";
 
 export const ExperienceTimeline = () => {
-  // Professional experience data with added logo paths and skills
+  // Professional experience data with added logo paths, skills, and fun facts
   const experiences = [
     {
       id: 1,
@@ -11,7 +11,8 @@ export const ExperienceTimeline = () => {
       position: "Software Engineer Intern",
       period: "Dec 2024 - May 2025",
       logo: "/logos/theta-zeta.png",
-      skills: ["React", "Node.js", "AWS", "Django", "PostgreSQL", "RESTful APIs", "Docker", "Terraform", "Git", "GitHub", "GitLab", "CI/CD", "Agile Methodologies", "Playwright", "Scrum", "Tailwind CSS"] 
+      skills: ["React", "Node.js", "AWS", "Django", "PostgreSQL", "RESTful APIs", "Docker", "Terraform", "Git", "GitHub", "GitLab", "CI/CD", "Agile Methodologies", "Playwright", "Scrum", "Tailwind CSS"],
+      funFact: "Broke the build only twice. Personal record!"
     },
     {
       id: 2,
@@ -19,7 +20,8 @@ export const ExperienceTimeline = () => {
       position: "Software Developer Intern",
       period: "May 2024 - Nov 2024",
       logo: "/logos/noretek.png",
-      skills: ["Angular", "TypeScript", "Docker", "Tainwind CSS", "MySQL", "AWS", "DynamoDB", "AWS Lambda", "AWS API Gateway"]
+      skills: ["Angular", "TypeScript", "Docker", "Tailwind CSS", "MySQL", "AWS", "DynamoDB", "AWS Lambda", "AWS API Gateway"],
+      funFact: "Survived six months without dropping the production database. Achievement unlocked!"
     },
     {
       id: 3,
@@ -27,11 +29,12 @@ export const ExperienceTimeline = () => {
       position: "Research Assistant",
       period: "Jan 2024 - May 2024", 
       logo: "/logos/centre-college.png",
-      skills: ["Python", "Pandas", "Numpy", "Regex", "Matplotlib", "Seaborn", "Ploty", "Google Colab", "Machine Learning", "Data Analysis"]
+      skills: ["Python", "Pandas", "Numpy", "Regex", "Matplotlib", "Seaborn", "Plotly", "Google Colab", "Machine Learning", "Data Analysis"],
+      funFact: "My code once analyzed 10,000 data points and concluded coffee consumption correlates with code quality."
     }
   ];
   
-  // Get the appropriate icon for each experience type
+  // Get the appropriate icon for each experience type with clever labels
   const getExperienceIcon = (company) => {
     if (company.includes("College") || company.includes("Department")) {
       return <BookOpen className="h-5 w-5 text-red-400" />;
@@ -349,11 +352,20 @@ export const ExperienceTimeline = () => {
                           </div>
                         </div>
                         
+                        {/* Fun fact - new addition */}
+                        <div className="mb-2 p-2 bg-primary/5 rounded-lg">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
+                            <Coffee className="h-3.5 w-3.5 text-amber-400" />
+                            <span className="font-medium">Coffee-Fueled Achievement</span>
+                          </div>
+                          <p className="text-xs text-foreground italic">"{experience.funFact}"</p>
+                        </div>
+                        
                         {/* Skills section with improved icon */}
                         <div className="mb-2">
                           <div className="flex items-center gap-1.5 mb-1.5 text-xs text-muted-foreground">
                             <Code2 className="h-3.5 w-3.5 text-violet-400" />
-                            <span className="font-medium">Skills</span>
+                            <span className="font-medium">Tech Wizardry</span>
                           </div>
                           <div className="flex flex-wrap gap-1.5">
                             {experience.skills.map((skill, index) => (
@@ -370,7 +382,7 @@ export const ExperienceTimeline = () => {
                         {/* Date information with improved calendar icon */}
                         <div className="flex items-center text-xs mt-auto">
                           <div className="flex items-center gap-1 text-muted-foreground">
-                            <Calendar className="h-4 w-4 text-amber-400" />
+                            <Clock className="h-4 w-4 text-amber-400" />
                             <span>{experience.period}</span>
                           </div>
                         </div>
@@ -379,7 +391,7 @@ export const ExperienceTimeline = () => {
                         <div className="mt-2 pt-2 border-t border-primary/10">
                           <div className="flex items-center justify-end">
                             <span className="text-[10px] text-muted-foreground">
-                              {`${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
+                              {`Episode ${sortedExperiences.length - sortedExperiences.findIndex(exp => exp.id === experience.id)} of ${sortedExperiences.length}`}
                             </span>
                           </div>
                         </div>

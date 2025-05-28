@@ -1,4 +1,4 @@
-import { Briefcase } from "lucide-react";
+import { Briefcase, Coffee, Rocket } from "lucide-react";
 import { ExperienceTimeline } from "./ExperienceTimeline";
 
 export const ExperienceSection = () => {
@@ -14,17 +14,38 @@ export const ExperienceSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
             Professional <span className="text-blue-500 relative inline-block">
-              Experience
+              Adventures
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
-            Scroll through my professional journey
+          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
+            Places where I turned caffeine into code and meetings into milestones
+          </p>
+        </div>
+
+        {/* Timeline intro box with personality */}
+        <div className="mb-12 mx-auto max-w-2xl p-5 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/20 text-center">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Coffee className="h-5 w-5 text-primary" />
+            <Rocket className="h-5 w-5 text-blue-400" />
+            <Coffee className="h-5 w-5 text-primary" />
+          </div>
+          <p className="text-sm italic text-muted-foreground">
+            "Drag the timeline to explore my journey from 'what's a function?' to 'I can debug that in my sleep.' 
+            Scrolling also works, but dragging feels more dramatic."
           </p>
         </div>
 
         {/* Full-width timeline container with consistent centering */}
         <div className="w-full relative">
           <ExperienceTimeline />
+        </div>
+        
+        {/* Bottom quote */}
+        <div className="mt-16 text-center">
+          <p className="text-sm text-muted-foreground italic">
+            "Each job taught me something valuable. Some taught me technical skills, 
+            others taught me patience during never-ending meetings."
+          </p>
         </div>
       </div>
     </section>

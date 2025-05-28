@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, ExternalLink, ChevronLeft, ChevronRight, Code, Sparkles } from "lucide-react";
 import { cn } from "../lib/utils";
 
 // Sample project data
@@ -7,7 +7,7 @@ const projects = [
   {
     id: 1,
     title: "AI-Powered Task Manager",
-    description: "A task management application with AI features for task prioritization, smart categorization, and deadline predictions.",
+    description: "A task manager that uses AI to tell you what you already know: everything's due yesterday. It prioritizes tasks based on your anxiety level and passive-aggressive deadline emails.",
     image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=1470&auto=format&fit=crop",
     tags: ["React", "Node.js", "OpenAI", "MongoDB"],
     links: {
@@ -18,7 +18,7 @@ const projects = [
   {
     id: 2,
     title: "E-Commerce Dashboard",
-    description: "A comprehensive dashboard for e-commerce store owners with analytics, inventory management, and customer insights.",
+    description: "A dashboard for e-commerce stores that makes Excel spreadsheets jealous. Visualizes data so pretty you'll stare at it instead of fixing your inventory issues.",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1470&auto=format&fit=crop",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
     links: {
@@ -29,7 +29,7 @@ const projects = [
   {
     id: 3,
     title: "Cloud File Storage",
-    description: "A secure cloud storage solution with client-side encryption, file sharing capabilities, and version control.",
+    description: "A secure cloud storage solution where your files are safer than your secrets. Features end-to-end encryption so strong even I can't figure out how to debug it.",
     image: "https://images.unsplash.com/photo-1607798748738-b15c40d33d57?q=80&w=1470&auto=format&fit=crop",
     tags: ["AWS S3", "Express", "React", "Redis"],
     links: {
@@ -40,7 +40,7 @@ const projects = [
   {
     id: 4,
     title: "Real-time Chat Application",
-    description: "A modern chat application with real-time messaging, file sharing, and collaborative features.",
+    description: "A modern chat app that lets you see '...typing' for an eternity while your friends craft the perfect 'k' response. Features real-time messaging and existential dread.",
     image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=1470&auto=format&fit=crop",
     tags: ["Socket.io", "React", "Node.js", "MongoDB"],
     links: {
@@ -51,7 +51,7 @@ const projects = [
   {
     id: 5,
     title: "Machine Learning Platform",
-    description: "A platform for training and deploying machine learning models with an intuitive interface.",
+    description: "A platform that makes ML models feel accessible until you actually try to train one. Comes with pre-installed imposter syndrome and excessive GPU bills.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop",
     tags: ["Python", "TensorFlow", "Docker", "Kubernetes"],
     links: {
@@ -226,8 +226,8 @@ export const ProjectsSection = () => {
         className={cn(
           "w-2 h-2 rounded-full transition-all duration-300 transform",
           activeIndex === index
-            ? "bg-yellow-400 scale-125 shadow-lg shadow-primary/40" 
-            : "bg-yellow-400/60 hover:bg-yellow-400/90 hover:scale-110",
+            ? "bg-primary scale-125 shadow-lg shadow-primary/40" 
+            : "bg-primary/60 hover:bg-primary/90 hover:scale-110",
           isTransitioning && "cursor-not-allowed"
         )}
         aria-label={`Go to project ${index + 1}`}
@@ -240,12 +240,12 @@ export const ProjectsSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Featured <span className="text-blue-500 relative inline-block">
-              Projects
+            Digital <span className="text-blue-500 relative inline-block">
+              Creations
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-4xl mx-auto font-bold">
-            A collection of projects that demonstrate my skills and experience in different areas of software development.
+          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
+            Things I built while my coffee was still hot and my patience still intact
           </p>
         </div>
 
@@ -285,7 +285,7 @@ export const ProjectsSection = () => {
                     
                     {/* Glow effect for center card */}
                     {project.position === 0 && (
-                      <div className="absolute inset-0 bg-purple-400/40 rounded-2xl blur-sm opacity-60"></div>
+                      <div className="absolute inset-0 bg-primary/40 rounded-2xl blur-sm opacity-60"></div>
                     )}
                     
                     {/* Card content */}
@@ -341,7 +341,7 @@ export const ProjectsSection = () => {
                               className="px-4 py-2 flex-1 rounded-lg border border-white/30 text-white hover:bg-white/10 transition-all flex items-center justify-center gap-2 font-medium text-sm backdrop-blur-sm hover:border-white/50"
                             >
                               <Github className="h-4 w-4" />
-                              <span>GitHub</span>
+                              <span>See The Code</span>
                             </a>
                             <a 
                               href={project.links.demo}
@@ -349,8 +349,8 @@ export const ProjectsSection = () => {
                               rel="noopener noreferrer"
                               className="px-4 py-2 flex-1 rounded-lg bg-primary hover:bg-primary/90 text-white transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/30 text-sm font-medium hover:shadow-primary/40"
                             >
-                              <ExternalLink className="h-4 w-4" />
-                              <span>Demo</span>
+                              <Sparkles className="h-4 w-4" />
+                              <span>See It Live</span>
                             </a>
                           </div>
                         )}
@@ -378,11 +378,17 @@ export const ProjectsSection = () => {
             className="group px-8 py-3 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-black/30 backdrop-blur-md border border-white/20 text-white font-medium transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <span>View All Projects</span>
+              <span>Explore My Digital Playground</span>
               <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </span>
             <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-purple-500/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
           </a>
+        </div>
+        
+        <div className="mt-16 text-center">
+          <p className="text-sm text-muted-foreground italic">
+            "All projects were 100% debugged with console.log() and caffeine – because sometimes printf is the best debugger."
+          </p>
         </div>
       </div>
     </section>
