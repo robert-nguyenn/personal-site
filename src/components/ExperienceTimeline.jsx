@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Coffee, Clock } from 'lucide-react';
 import { cn } from "../lib/utils";
+// At the top of your file, add this import
+import csResearchLogo from '../assets/cs_research.png';
 
 export const ExperienceTimeline = () => {
   // Professional experience data with added logo paths, skills, and fun facts
@@ -28,7 +30,7 @@ export const ExperienceTimeline = () => {
       company: "Centre - Computer Science Department",
       position: "Research Assistant",
       period: "Jan 2024 - May 2024", 
-      logo: "/logos/centre-college.png",
+      logo: csResearchLogo,
       skills: ["Python", "Pandas", "Numpy", "Regex", "Matplotlib", "Seaborn", "Plotly", "Google Colab", "Machine Learning", "Data Analysis"],
       funFact: "My code once analyzed 10,000 data points and concluded coffee consumption correlates with code quality."
     }
@@ -57,6 +59,7 @@ export const ExperienceTimeline = () => {
   const [logoTransitioning, setLogoTransitioning] = useState(false);
   const timelineRef = useRef(null);
   const containerRef = useRef(null);
+  const imageContainerRef = useRef(null); // New ref for the image container
   const scrollTimeoutRef = useRef(null);
   const previousLogoRef = useRef(null);
   
@@ -121,6 +124,9 @@ export const ExperienceTimeline = () => {
   
   // Drag handling for timeline interaction with improved sensitivity
   const handleMouseDown = (e) => {
+    // Don't start dragging if we're over the image section
+    if (isOverImageSection(e)) return;
+    
     setIsDragging(true);
     setDragStartY(e.pageY);
   };
@@ -153,6 +159,19 @@ export const ExperienceTimeline = () => {
     setIsDragging(false);
   };
   
+  // Helper function to check if mouse event is over image section
+  const isOverImageSection = (e) => {
+    if (!imageContainerRef.current) return false;
+    
+    const rect = imageContainerRef.current.getBoundingClientRect();
+    return (
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom
+    );
+  };
+  
   // Debounce scroll events to prevent rapid firing
   const debounceScroll = (callback, delay = 100) => {
     return (...args) => {
@@ -175,6 +194,11 @@ export const ExperienceTimeline = () => {
     const scrollCooldown = 200; // ms between scroll events to reset accumulation
     
     const handleWheel = (e) => {
+      // Check if mouse is over the image section - if so, allow normal scrolling
+      if (isOverImageSection(e)) {
+        return; // Allow default scroll behavior when over the image
+      }
+      
       // Check if we're at a boundary and scrolling in the direction to exit
       const isScrollingDown = e.deltaY > 0;
       const isFirstExperience = activeExperienceId === sortedExperiences[0].id;
@@ -246,7 +270,7 @@ export const ExperienceTimeline = () => {
       <div className="max-w-6xl mx-auto">
         {/* Two column grid layout with REDUCED GAP */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
-          {/* Left column - Timeline and cards (50% width on desktop) */}
+          {/* Left column - Timeline and cards (40% width on desktop) */}
           <div className="md:col-span-2 flex flex-col items-center">
             <div className="flex gap-6 w-full max-w-md">
               {/* Vertical timeline */}
@@ -403,56 +427,47 @@ export const ExperienceTimeline = () => {
             </div>
           </div>
           
-          {/* Right column - Logo display (60% width on desktop) - INCREASED SIZE */}
-          <div className="md:col-span-3 flex justify-center items-center h-full">
-            <div className="relative w-full h-80 flex items-center justify-center">
-              {/* Logo container with transition effect - LARGER CONTAINER */}
-              <div className="relative w-full h-full flex items-center justify-center rounded-xl bg-card/50 backdrop-blur-sm p-8 border border-primary/10 shadow-md overflow-hidden">
-                {/* Current logo with fade-in animation - LARGER IMAGE */}
-                <div 
-                  className={cn(
-                    "absolute inset-0 flex items-center justify-center transition-opacity duration-300 p-6",
-                    logoTransitioning ? "opacity-0" : "opacity-100"
-                  )}
-                >
-                  {activeExperience?.logo ? (
-                    <img 
-                      src={activeExperience.logo} 
-                      alt={`${activeExperience.company} logo`} 
-                      className="max-w-full max-h-full object-contain transition-all duration-300"
-                    />
-                  ) : (
-                    <div className="w-48 h-48 rounded-full bg-gray-200 flex items-center justify-center">
-                      <Briefcase className="h-24 w-24 text-gray-400" />
-                    </div>
-                  )}
-                </div>
-                
-                {/* Company name under the logo */}
-                <div className="absolute bottom-4 left-0 right-0 text-center">
-                  <span className="text-sm font-medium bg-card/80 px-3 py-1 rounded-full backdrop-blur-sm">
-                    {activeExperience?.company}
-                  </span>
-                </div>
+          {/* Right column - Logo display (60% width on desktop) - SIGNIFICANTLY IMPROVED IMAGE DISPLAY */}
+          <div 
+            ref={imageContainerRef} 
+            className="md:col-span-3 flex justify-center items-center"
+          >
+            {activeExperience?.logo ? (
+              <div className="w-full h-[500px] flex justify-center items-center">
+                <img 
+                  src={activeExperience.logo} 
+                  alt={`${activeExperience.company} logo`}
+                  className="max-w-[90%] max-h-[500px] object-contain transition-all duration-300"
+                />
               </div>
-              
-              {/* Logo shadow effect */}
-              <div 
-                className="absolute -bottom-4 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent opacity-50" 
-                aria-hidden="true"
-              ></div>
+            ) : (
+              <div className="w-96 h-96 rounded-full bg-gray-200/10 flex items-center justify-center">
+                <Briefcase className="h-48 w-48 text-gray-400" />
+              </div>
+            )}
+            
+            {/* Company name overlay */}
+            <div className="absolute bottom-4 left-0 right-0 text-center">
+              <span className="text-sm font-medium bg-card/60 px-4 py-1.5 rounded-full backdrop-blur-sm">
+                {activeExperience?.company}
+              </span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Full-width interaction overlay */}
+      {/* Full-width interaction overlay - MODIFIED to not capture events over image */}
       <div 
         className={cn(
           "absolute inset-0 w-full z-0",
           isAtBoundary ? "cursor-default" : "cursor-ns-resize"
         )}
-        onMouseDown={handleMouseDown}
+        onMouseDown={(e) => {
+          // Only handle mouse down if not over image
+          if (!isOverImageSection(e)) {
+            handleMouseDown(e);
+          }
+        }}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       />
