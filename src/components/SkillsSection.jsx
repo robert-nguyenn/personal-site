@@ -340,13 +340,6 @@ export const SkillsSection = () => {
               </button>
             </div>
           )}
-
-          {/* Bottom quote */}
-          <div className="mt-16 text-center">
-            <p className="text-sm text-muted-foreground italic">
-              "Yes, I could have spent this time watching Netflix instead of learning Terraform, but where's the fun in that?"
-            </p>
-          </div>
         </div>
     </section>
   );

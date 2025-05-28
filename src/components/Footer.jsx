@@ -36,16 +36,9 @@ export const Footer = () => {
       </div>
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        {/* Main footer content */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="gradient-border p-4 rounded-xl inline-flex items-center bg-card/30 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 group">
-            <Code className="h-5 w-5 text-primary mr-2" />
-            <span className="text-sm font-medium">Trust me, I've tested this site in production</span>
-          </div>
-        </div>
         
         {/* Bottom section with copyright */}
-        <div className="border-t border-primary/10 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-blue-400 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Robert Nguyen. No bugs were harmed in the making of this site.
           </p>

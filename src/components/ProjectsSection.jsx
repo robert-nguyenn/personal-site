@@ -244,7 +244,7 @@ export const ProjectsSection = () => {
               Creations
             </span>
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
+          <p className="mt-4 text-muted-foreground max-w-3xl mx-auto font-bold">
             Things I built while my coffee was still hot and my patience still intact
           </p>
         </div>
@@ -383,12 +383,6 @@ export const ProjectsSection = () => {
             </span>
             <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-purple-500/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
           </a>
-        </div>
-        
-        <div className="mt-16 text-center">
-          <p className="text-sm text-muted-foreground italic">
-            "All projects were 100% debugged with console.log() and caffeine – because sometimes printf is the best debugger."
-          </p>
         </div>
       </div>
     </section>
