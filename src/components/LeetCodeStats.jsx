@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Brain, Zap } from 'lucide-react';
 import { cn } from "../lib/utils";
 
 export const LeetCodeStats = () => {
@@ -52,10 +52,10 @@ export const LeetCodeStats = () => {
 
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-          Coding Challenges
+          My Algorithm Therapy
         </h3>
-        <p className="text-muted-foreground">
-          Track my problem-solving journey
+        <p className="text-muted-foreground italic">
+          "Where I solve problems no one asked me to fix"
         </p>
       </div>
 
@@ -102,15 +102,15 @@ export const LeetCodeStats = () => {
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-3xl font-bold text-foreground">{leetcodeStats.totalSolved}</span>
             <span className="text-xs text-muted-foreground">/{leetcodeStats.totalQuestions}</span>
-            <span className="text-xs font-medium text-primary mt-1">Solved</span>
+            <span className="text-xs font-medium text-primary mt-1">Problems Tamed</span>
           </div>
         </div>
         
-        {/* Circular indicator for "attempting" like in your profile */}
+        {/* Circular indicator for "attempting" with personality */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-card/90 border border-primary/20 rounded-full px-3 py-1 shadow-md">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-[#03A89E] rounded-full"></div>
-            <span className="text-sm font-medium">4 Attempting</span>
+            <div className="w-2 h-2 bg-[#03A89E] rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium">4 Currently Haunting Me</span>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@ export const LeetCodeStats = () => {
               </div>
             </div>
           </div>
-          <span className="text-[#00AF9B] font-medium text-sm">Easy</span>
+          <span className="text-[#00AF9B] font-medium text-sm">Easy (Warm-ups)</span>
         </div>
         
         {/* Medium problems */}
@@ -186,7 +186,7 @@ export const LeetCodeStats = () => {
               </div>
             </div>
           </div>
-          <span className="text-[#FFA116] font-medium text-sm">Medium</span>
+          <span className="text-[#FFA116] font-medium text-sm">Medium (Brain Flexing)</span>
         </div>
         
         {/* Hard problems */}
@@ -222,25 +222,39 @@ export const LeetCodeStats = () => {
               </div>
             </div>
           </div>
-          <span className="text-[#EF4743] font-medium text-sm">Hard</span>
+          <span className="text-[#EF4743] font-medium text-sm">Hard (Nightmares)</span>
         </div>
       </div>
       
-      {/* Additional stats */}
+      {/* Additional stats with personality */}
       <div className="mb-6 bg-card/50 border border-primary/10 rounded-xl p-4 backdrop-blur-sm">
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-sm text-muted-foreground">Username</p>
+            <p className="text-sm text-muted-foreground">Alter Ego</p>
             <p className="font-medium">{leetcodeStats.username}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Rank</p>
-            <p className="font-medium">{leetcodeStats.ranking}</p>
+            <p className="text-sm text-muted-foreground">Global Standing</p>
+            <div className="flex items-center">
+              <p className="font-medium">{leetcodeStats.ranking}</p>
+              <span className="ml-1 text-xs text-muted-foreground">(still climbing!)</span>
+            </div>
           </div>
         </div>
       </div>
       
-      {/* Profile link button */}
+      <div className="mb-6 p-3 border border-dashed border-primary/30 rounded-xl bg-primary/5">
+        <div className="flex items-start gap-3">
+          <div className="bg-primary/10 p-2 rounded-lg">
+            <Zap className="h-5 w-5 text-primary" />
+          </div>
+          <p className="text-sm italic text-muted-foreground">
+            "When I solve a hard problem after 2 hours, I treat myself to coffee. When I solve it in 10 minutes, I double-check because I probably missed something."
+          </p>
+        </div>
+      </div>
+      
+      {/* Profile link button with more personality */}
       <a 
         href={leetcodeStats.profileUrl}
         target="_blank" 
@@ -255,7 +269,7 @@ export const LeetCodeStats = () => {
             alt="LeetCode" 
             className="w-5 h-5 object-contain" 
           />
-          <span>Visit My LeetCode Profile</span>
+          <span>Watch Me Fight Algorithms</span>
           <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </span>
       </a>
