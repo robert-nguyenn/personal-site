@@ -13,12 +13,12 @@ export const CodingStatsSection = () => {
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold">
-            Algorithm <span className="text-blue-500 relative inline-block">
-              Therapy
+            Problem <span className="text-blue-500 relative inline-block">
+              Solving
             </span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
-            Where I voluntarily solve problems that nobody asked for
+            Honing skills through algorithmic challenges and practical solutions
           </p>
         </div>
 
@@ -36,9 +36,9 @@ export const CodingStatsSection = () => {
                   <BrainCircuit className="h-5 w-5 text-primary"/>
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">My Algorithm Obsession</h4>
+                  <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Algorithmic Approach</h4>
                   <p className="text-muted-foreground leading-relaxed">
-                    I tackle LeetCode problems while others binge Netflix. Why? Because nothing says "fun Friday night" like optimizing a recursive solution until 3 AM and celebrating with a victory dance when I beat 98% of submissions.
+                    I regularly practice algorithm challenges to sharpen my problem-solving skills. There's something uniquely satisfying about optimizing a solution after working through multiple approaches—it's the engineering mindset applied to code.
                   </p>
                 </div>
               </div>
@@ -50,9 +50,9 @@ export const CodingStatsSection = () => {
                   <Coffee className="h-5 w-5 text-primary"/>
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">The Method to My Madness</h4>
+                  <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">Problem-Solving Process</h4>
                   <p className="text-muted-foreground leading-relaxed">
-                    My approach? First, stare blankly at the problem. Second, overthink it. Third, remember that elegant O(n) solution exists. Finally, have that "Aha!" moment after my second espresso. Works 60% of the time, every time.
+                    My approach involves careful problem analysis, breaking complex issues into manageable parts, and considering edge cases. I find that stepping away momentarily often leads to those "aha" moments that unlock elegant solutions—sometimes the subconscious mind needs time to process.
                   </p>
                 </div>
               </div>
@@ -61,17 +61,17 @@ export const CodingStatsSection = () => {
             <div className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-xl p-5 border border-primary/20">
               <p className="italic text-sm">
                 "The difference between a senior and junior engineer isn't that seniors never make mistakes. 
-                It's that seniors have a deeper catalog of mistakes to avoid repeating."
+                It's that seniors have a better mental model of systems and a deeper catalog of solutions to draw from."
               </p>
-              <p className="text-right font-medium text-sm mt-2">— My debugging mantra</p>
+              <p className="text-right font-medium text-sm mt-2">— Engineering principle I live by</p>
             </div>
             
             <div className="flex flex-wrap gap-3 pt-4">
-              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Binary Search & Chill</span>
-              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Graph Theory Enthusiast</span>
-              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">DP or Not DP?</span>
-              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Hash Map Hoarder</span>
-              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">O(n) Optimizer</span>
+              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Binary Search</span>
+              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Graph Algorithms</span>
+              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Dynamic Programming</span>
+              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Hash Tables</span>
+              <span className="px-3 py-1.5 rounded-full bg-primary/10 text-sm font-medium">Optimization</span>
             </div>
           </div>
         </div>

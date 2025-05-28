@@ -6,8 +6,7 @@ import {
   Database, 
   Cpu,
   ChevronDown,
-  Wrench,
-  Zap
+  PlusCircle
 } from "lucide-react";
 import { cn } from "../lib/utils";
 
@@ -107,13 +106,13 @@ export const SkillsSection = () => {
     setVisibleCount(prev => Math.min(prev + 6, skills.length)); // Load 6 more skills
   };
 
-  // Get expertise level description with more personality
+  // Get expertise level description with professional terminology
   const getExpertiseLevel = (level) => {
-    if (level >= 90) return "Wizard";
-    if (level >= 80) return "Ninja";
-    if (level >= 70) return "Pro";
-    if (level >= 60) return "Solid";
-    return "Learning";
+    if (level >= 90) return "Expert";
+    if (level >= 80) return "Advanced";
+    if (level >= 70) return "Proficient";
+    if (level >= 60) return "Intermediate";
+    return "Familiar";
   };
 
   // Get color class based on level
@@ -125,13 +124,13 @@ export const SkillsSection = () => {
     return "bg-gradient-to-r from-yellow-500 to-primary";
   };
   
-  // Get category label with more personality
+  // Get professional category labels
   const getCategoryLabel = (category) => {
     const labels = {
-      frontend: "Pixel Pusher",
-      backend: "Server Whisperer",
-      database: "Data Wrangler",
-      devops: "Pipeline Plumber"
+      frontend: "Frontend Development",
+      backend: "Backend Engineering",
+      database: "Database Management",
+      devops: "DevOps & Infrastructure"
     };
     return labels[category] || category;
   };
@@ -147,16 +146,16 @@ export const SkillsSection = () => {
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">
-              Tech <span className="text-blue-500 relative inline-block">
-                Arsenal
+              Technical <span className="text-blue-500 relative inline-block">
+                Skills
               </span>
             </h2>
             <p className="mt-4 text-muted-foreground max-w-3xl mx-auto font-bold">
-              My collection of digital superpowers acquired during suspicious amounts of "free time"
+              Core competencies and technologies I've mastered throughout my career
             </p>
           </div>
 
-          {/* Category Filters with more personality */}
+          {/* Category Filters with professional labels */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             <button
               onClick={() => setActiveCategory("all")}
@@ -171,7 +170,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <LayoutGrid className="w-4 h-4 text-purple-400" strokeWidth={2} />
                 </div>
-                The Entire Toolbox
+                All Technologies
               </span>
             </button>
             <button
@@ -187,7 +186,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <FileCode className="w-4 h-4 text-blue-400" strokeWidth={2} />
                 </div>
-                Pixel Crafting
+                Frontend
               </span>
             </button>
             <button
@@ -203,7 +202,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <ServerCog className="w-4 h-4 text-green-400" strokeWidth={2} />
                 </div>
-                Server Magic
+                Backend
               </span>
             </button>
             <button
@@ -219,7 +218,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <Database className="w-4 h-4 text-orange-400" strokeWidth={2} />
                 </div>
-                Data Hoarding
+                Databases
               </span>
             </button>
             <button
@@ -235,7 +234,7 @@ export const SkillsSection = () => {
                 <div className="flex items-center justify-center w-5 h-5">
                   <Cpu className="w-4 h-4 text-red-400" strokeWidth={2} />
                 </div>
-                Cloud Wrangling
+                DevOps
               </span>
             </button>
           </div>
@@ -244,27 +243,27 @@ export const SkillsSection = () => {
           <div className="mb-10 p-5 rounded-xl bg-primary/5 backdrop-blur-sm border border-primary/20">
             {activeCategory === "all" && (
               <p className="text-center italic text-muted-foreground">
-                "I've never met a framework I didn't want to learn or a language I wouldn't try at 2 AM"
+                "I believe in continuous learning and staying current with emerging technologies to deliver optimal solutions"
               </p>
             )}
             {activeCategory === "frontend" && (
               <p className="text-center italic text-muted-foreground">
-                "Making interfaces so intuitive that users think they designed them themselves"
+                "Creating responsive, accessible interfaces that balance visual appeal with performance and usability"
               </p>
             )}
             {activeCategory === "backend" && (
               <p className="text-center italic text-muted-foreground">
-                "Where I build the invisible parts that everyone notices when they break"
+                "Building robust server-side applications with a focus on scalability, security, and maintainable architecture"
               </p>
             )}
             {activeCategory === "database" && (
               <p className="text-center italic text-muted-foreground">
-                "I speak fluent SQL and have strong opinions about database normalization"
+                "Designing efficient data models and implementing solutions that balance performance with data integrity"
               </p>
             )}
             {activeCategory === "devops" && (
               <p className="text-center italic text-muted-foreground">
-                "Automating myself out of a job, one pipeline at a time"
+                "Streamlining development workflows and infrastructure management with modern automation practices"
               </p>
             )}
           </div>
@@ -333,8 +332,8 @@ export const SkillsSection = () => {
                 className="cosmic-button group px-8 py-3 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-black/30 backdrop-blur-md border border-white/10 text-white font-medium transition-all hover:border-primary/50"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  <span>Show Me More Weapons</span>
-                  <Zap className="h-4 w-4 transition-transform" />
+                  <span>View More Skills</span>
+                  <PlusCircle className="h-4 w-4 transition-transform" />
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-purple-500/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </button>

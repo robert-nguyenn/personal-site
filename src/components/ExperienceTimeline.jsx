@@ -289,6 +289,13 @@ export const ExperienceTimeline = () => {
                 >
                   <ChevronUp className="h-4 w-4" />
                 </button>
+
+                {/* Hint text for scrolling - new addition */}
+                <div className="absolute -left-16 top-1/2 -translate-y-1/2 text-xs text-muted-foreground whitespace-nowrap">
+                  <span className="bg-background/70 px-2 py-1 rounded-full backdrop-blur-sm">
+                    Scroll <ChevronDown className="h-3 w-3 inline" />
+                  </span>
+                </div>
                 
                 {/* Vertical Timeline UI */}
                 <div 
@@ -445,13 +452,7 @@ export const ExperienceTimeline = () => {
                 <Briefcase className="h-48 w-48 text-gray-400" />
               </div>
             )}
-            
-            {/* Company name overlay */}
-            <div className="absolute bottom-4 left-0 right-0 text-center">
-              <span className="text-sm font-medium bg-card/60 px-4 py-1.5 rounded-full backdrop-blur-sm">
-                {activeExperience?.company}
-              </span>
-            </div>
+          
           </div>
         </div>
       </div>

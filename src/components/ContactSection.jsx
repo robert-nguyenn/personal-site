@@ -46,7 +46,7 @@ export const ContactSection = () => {
     if (!formState.name || !formState.email || !formState.message) {
       setFormStatus({
         type: "error",
-        message: "Please fill out all fields. My ESP isn't working today 😉"
+        message: "Please fill out all required fields to continue."
       });
       setShake(true);
       setTimeout(() => setShake(false), 600);
@@ -61,7 +61,7 @@ export const ContactSection = () => {
       
       setFormStatus({
         type: "success",
-        message: "Message received! I'll respond faster than my code compiles (which is pretty fast)."
+        message: "Thank you for your message. I'll get back to you as soon as possible."
       });
       
       setFormState({
@@ -72,7 +72,7 @@ export const ContactSection = () => {
     } catch (error) {
       setFormStatus({
         type: "error",
-        message: "Looks like the internet gremlins got your message. Please try again!"
+        message: "There was an issue sending your message. Please try again or contact me directly via email."
       });
     } finally {
       setIsSubmitting(false);
@@ -130,7 +130,7 @@ export const ContactSection = () => {
             </span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-bold">
-            Have a project that needs some coding magic? Or just want to chat about why tabs are superior to spaces? Drop me a line!
+            Interested in working together or discussing potential opportunities? I'd love to hear from you.
           </p>
         </div>
 
@@ -152,7 +152,7 @@ export const ContactSection = () => {
               >
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                    Human Interface Details
+                    Contact Information
                   </h3>
                   
                   <div className="space-y-5">
@@ -164,7 +164,7 @@ export const ContactSection = () => {
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
-                        <p className="text-sm text-muted-foreground">Email (I actually check it)</p>
+                        <p className="text-sm text-muted-foreground">Email</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
                           robert@nguyenn.com
                         </p>
@@ -180,7 +180,7 @@ export const ContactSection = () => {
                         <Phone className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
-                        <p className="text-sm text-muted-foreground">Phone (Texts preferred)</p>
+                        <p className="text-sm text-muted-foreground">Phone</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
                           +1 (415) 555-7890
                         </p>
@@ -193,9 +193,9 @@ export const ContactSection = () => {
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
-                        <p className="text-sm text-muted-foreground">Location (Natural Habitat)</p>
+                        <p className="text-sm text-muted-foreground">Location</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
-                          San Francisco Coffee Shops
+                          San Francisco, CA
                         </p>
                       </div>
                     </div>
@@ -207,7 +207,7 @@ export const ContactSection = () => {
                       <div className="text-left">
                         <p className="text-sm text-muted-foreground">Response Time</p>
                         <p className="font-medium group-hover:text-primary transition-colors text-foreground">
-                          1-2 business coffees
+                          Within 24-48 hours
                         </p>
                       </div>
                     </div>
@@ -215,7 +215,7 @@ export const ContactSection = () => {
                   
                   {/* Social Links */}
                   <div className="mt-8 pt-6 border-t border-primary/10">
-                    <h4 className="text-lg font-medium mb-4 text-foreground">Where I Share Code & Memes</h4>
+                    <h4 className="text-lg font-medium mb-4 text-foreground">Professional Networks</h4>
                     <div className="flex gap-4 justify-center">
                       <a
                         href="https://github.com/robertnguyenn"
@@ -264,13 +264,13 @@ export const ContactSection = () => {
 
               <form ref={formRef} onSubmit={handleSubmit} className="relative z-10 space-y-6">
                 <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                  Start a Conversation
+                  Get in Touch
                 </h3>
-                <p className="text-muted-foreground mb-6">Tell me about your project, job opportunity, or favorite algorithm.</p>
+                <p className="text-muted-foreground mb-6">Feel free to reach out about projects, opportunities, or technical discussions.</p>
                 
                 <div className="animate-item opacity-0 translate-y-4 transition-all duration-500" style={{transitionDelay: '100ms'}}>
                   <label htmlFor="name" className="block text-sm font-medium mb-2 ml-1 text-muted-foreground">
-                    Your Name (real or internet alias)
+                    Your Name
                   </label>
                   <div className="relative group">
                     <input
@@ -280,14 +280,14 @@ export const ContactSection = () => {
                       value={formState.name}
                       onChange={handleChange}
                       className="w-full p-4 bg-primary/5 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all duration-300 backdrop-blur-sm placeholder:text-muted-foreground text-foreground"
-                      placeholder="Linus Torvalds or CoffeeCodeNinja22"
+                      placeholder="John Smith"
                     />
                   </div>
                 </div>
                 
                 <div className="animate-item opacity-0 translate-y-4 transition-all duration-500" style={{transitionDelay: '200ms'}}>
                   <label htmlFor="email" className="block text-sm font-medium mb-2 ml-1 text-muted-foreground">
-                    Your Email (I promise not to spam)
+                    Your Email
                   </label>
                   <div className="relative group">
                     <input
@@ -297,14 +297,14 @@ export const ContactSection = () => {
                       value={formState.email}
                       onChange={handleChange}
                       className="w-full p-4 bg-primary/5 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all duration-300 backdrop-blur-sm placeholder:text-muted-foreground text-foreground"
-                      placeholder="your.name@awesome.com"
+                      placeholder="john.smith@example.com"
                     />
                   </div>
                 </div>
                 
                 <div className="animate-item opacity-0 translate-y-4 transition-all duration-500" style={{transitionDelay: '300ms'}}>
                   <label htmlFor="message" className="block text-sm font-medium mb-2 ml-1 text-muted-foreground">
-                    Your Message (be as detailed or cryptic as you'd like)
+                    Message
                   </label>
                   <div className="relative group">
                     <textarea
@@ -314,7 +314,7 @@ export const ContactSection = () => {
                       onChange={handleChange}
                       rows="5"
                       className="w-full p-4 bg-primary/5 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all duration-300 backdrop-blur-sm resize-none placeholder:text-muted-foreground text-foreground"
-                      placeholder="Hey Robert, I saw your portfolio and I'm impressed! Let's talk about [your exciting project/opportunity here]..."
+                      placeholder="I'm reaching out regarding a potential project opportunity..."
                     ></textarea>
                   </div>
                 </div>
@@ -346,11 +346,11 @@ export const ContactSection = () => {
                       {isSubmitting ? (
                         <>
                           <Loader2 className="h-5 w-5 animate-spin" />
-                          <span className="tracking-wide">Sending bytes to server...</span>
+                          <span className="tracking-wide">Sending message...</span>
                         </>
                       ) : (
                         <>
-                          <span className="tracking-wide">Initiate Conversation</span>
+                          <span className="tracking-wide">Send Message</span>
                           <Send className="h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                         </>
                       )}
