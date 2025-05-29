@@ -3,6 +3,7 @@ import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Cl
 import { cn } from "../lib/utils";
 import csResearchLogo from '../assets/cs_research.png';
 import thetaLogo from '../assets/theta.png';
+import novatekLogo from '../assets/novatek.png';
 
 export const ExperienceTimeline = () => {
   // Professional experience data with added logo paths, skills, and noteworthy achievements
@@ -21,7 +22,7 @@ export const ExperienceTimeline = () => {
       company: "Novatek Technology, JSC",
       position: "Software Developer Intern",
       period: "May 2024 - Nov 2024",
-      logo: "/logos/noretek.png",
+      logo: novatekLogo,
       skills: ["Angular", "TypeScript", "Docker", "Tailwind CSS", "MySQL", "AWS", "DynamoDB", "AWS Lambda", "AWS API Gateway"],
       achievement: "Developed a dashboard feature that increased client visibility into system performance, reducing support tickets by 25%."
     },
