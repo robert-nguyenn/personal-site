@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Briefcase, Calendar, ChevronUp, ChevronDown, Code2, Award, BookOpen, Clock, GraduationCap, Building, Star } from 'lucide-react';
 import { cn } from "../lib/utils";
 import csResearchLogo from '../assets/cs_research.png';
+import thetaLogo from '../assets/theta.png';
 
 export const ExperienceTimeline = () => {
   // Professional experience data with added logo paths, skills, and noteworthy achievements
@@ -11,7 +12,7 @@ export const ExperienceTimeline = () => {
       company: "Theta Zero Consulting, LLC",
       position: "Software Engineer Intern",
       period: "Dec 2024 - May 2025",
-      logo: "/logos/theta-zeta.png",
+      logo: thetaLogo,
       skills: ["React", "Node.js", "AWS", "Django", "PostgreSQL", "RESTful APIs", "Docker", "Terraform", "Git", "GitHub", "GitLab", "CI/CD", "Agile Methodologies", "Playwright", "Scrum", "Tailwind CSS"],
       achievement: "Implemented automated testing that reduced QA time by 30% and improved release reliability."
     },
