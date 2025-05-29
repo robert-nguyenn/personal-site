@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, ArrowRight, Loader2, Coffee, Zap } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Send, ArrowRight, Loader2, Coffee, Zap } from "lucide-react";
 
 // Simple cn utility function
 const cn = (...classes) => {
@@ -57,19 +57,40 @@ export const ContactSection = () => {
     setFormStatus(null);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Create form data for Web3Forms
+      const formData = new FormData();
+      formData.append('access_key', 'db8469d2-02f8-41fd-a060-97db96774f34');
+      formData.append('name', formState.name);
+      formData.append('email', formState.email);
+      formData.append('message', formState.message);
+      formData.append('subject', 'New Contact Form Submission from Portfolio');
+      // Optional: add replyto to make replies easier
+      formData.append('replyto', formState.email);
       
-      setFormStatus({
-        type: "success",
-        message: "Thank you for your message. I'll get back to you as soon as possible."
+      // Send the form data to Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
       });
       
-      setFormState({
-        name: "",
-        email: "",
-        message: ""
-      });
+      const data = await response.json();
+      
+      if (data.success) {
+        setFormStatus({
+          type: "success",
+          message: "Thank you for your message. I'll get back to you as soon as possible."
+        });
+        
+        setFormState({
+          name: "",
+          email: "",
+          message: ""
+        });
+      } else {
+        throw new Error(data.message || 'Form submission failed');
+      }
     } catch (error) {
+      console.error('Error submitting form:', error);
       setFormStatus({
         type: "error",
         message: "There was an issue sending your message. Please try again or contact me directly via email."
