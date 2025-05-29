@@ -38,7 +38,7 @@ export const Footer = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         
         {/* Bottom section with copyright */}
-        <div className="border-t border-blue-400 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-blue-300 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Robert Nguyen.
           </p>
@@ -46,7 +46,6 @@ export const Footer = () => {
           <p className="flex items-center text-sm gap-2 mt-2 md:mt-0 text-muted-foreground">
             <span>Powered by</span>  
             <Heart className="h-4 w-4 text-red-500 inline-block animate-pulse" fill="currentColor" /> 
-            <span>+ React</span>
           </p>
         </div>
       </div>
