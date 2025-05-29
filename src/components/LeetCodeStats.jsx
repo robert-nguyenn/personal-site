@@ -55,7 +55,7 @@ export const LeetCodeStats = () => {
           My Algorithm Therapy
         </h3>
         <p className="text-muted-foreground italic">
-          "Where I solve problems no one asked me to fix"
+          Where I solve problems no one asked me to fix
         </p>
       </div>
 
@@ -249,7 +249,7 @@ export const LeetCodeStats = () => {
             <Zap className="h-5 w-5 text-primary" />
           </div>
           <p className="text-sm italic text-muted-foreground">
-            "When I solve a hard problem after 2 hours, I treat myself to coffee. When I solve it in 10 minutes, I double-check because I probably missed something."
+            When I solve a hard problem after 2 hours, I treat myself to coffee. When I solve it in 10 minutes, I double-check because I probably missed something.
           </p>
         </div>
       </div>
