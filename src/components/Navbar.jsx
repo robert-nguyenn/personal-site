@@ -81,7 +81,7 @@ export const Navbar = () => {
       )}>
         <div className="container flex items-center justify-between">
           <a 
-            className="text-xl font-bold flex items-center group" 
+            className="text-2xl font-bold flex items-center group" 
             href="#hero"
           >
             <div className="relative overflow-hidden pr-2">
@@ -125,7 +125,7 @@ export const Navbar = () => {
               rel="noopener noreferrer"
               className="ml-2 px-4 py-1.5 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-1.5 text-sm"
             >
-              Resume <ExternalLink className="h-3.5 w-3.5" />
+              View Resume <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </div>
 
