@@ -292,7 +292,7 @@ export const ExperienceTimeline = () => {
 
                 {/* Navigation hint */}
                 <div className="absolute -left-16 top-1/2 -translate-y-1/2 text-xs text-muted-foreground whitespace-nowrap">
-                  <span className="bg-background/70 px-2 py-1 rounded-full backdrop-blur-sm">
+                  <span className="bg-background/70 px-5 py-1 rounded-full backdrop-blur-sm">
                     Scroll <ChevronDown className="h-3 w-3 inline" />
                   </span>
                 </div>

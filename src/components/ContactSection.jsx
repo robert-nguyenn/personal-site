@@ -155,7 +155,7 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-5 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
           {/* Contact Info */}
           <div className="md:col-span-2 space-y-8">
             <div className="relative h-full">
@@ -169,7 +169,7 @@ export const ContactSection = () => {
                   transform: `perspective(1000px) rotateX(${tiltValues.x}deg) rotateY(${tiltValues.y}deg)`,
                   transition: isHovering ? "none" : "all 0.6s cubic-bezier(0.23, 1, 0.32, 1)"
                 }}
-                className="p-8 rounded-2xl bg-card border border-primary/20 shadow-xl backdrop-blur-sm relative overflow-hidden"
+                className="p-5 rounded-2xl bg-card border border-primary/20 shadow-xl backdrop-blur-sm relative overflow-hidden"
               >
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
