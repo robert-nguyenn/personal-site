@@ -53,9 +53,9 @@ export const Footer = () => {
       {/* Back to top button */}
       <button 
         onClick={scrollToTop}
-        className={`fixed bottom-8 left-5 p-3 rounded-full bg-blue-400 text-white shadow-lg transition-all duration-300 transform ${
+        className={`fixed bottom-8 left-5 p-3 rounded-full bg-blue-300 text-black shadow-lg transition-all duration-300 transform ${
           isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none'
-        } hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary z-50`}
+        } hover:scale-110 focus:outline-none z-50`}
         aria-label="Scroll to top"
       >
         <ArrowUp className="h-5 w-5" />
