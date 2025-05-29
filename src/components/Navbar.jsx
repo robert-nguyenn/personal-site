@@ -119,7 +119,7 @@ export const Navbar = () => {
             );
           })}
           <a 
-            href="/resume.pdf"
+            href="https://drive.google.com/file/d/1P6FNfNhxp4qqM73yFI68GHuRmk7u24Zz/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-4 py-1.5 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-1.5 text-sm"
@@ -178,7 +178,7 @@ export const Navbar = () => {
             {/* Add resume button to mobile menu */}
             <div className="pt-4 mt-4 border-t border-primary/10 text-center">
               <a 
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/1P6FNfNhxp4qqM73yFI68GHuRmk7u24Zz/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-300 inline-flex items-center justify-center gap-2 w-full"
