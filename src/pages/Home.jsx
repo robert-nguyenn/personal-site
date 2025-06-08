@@ -9,7 +9,7 @@ import { ThemeToggle } from "../components/ThemeToggle";
 import { StarBackground } from "../components/StarBackground";
 import { CodingStatsSection } from "../components/CodingStatsSection";
 import { ExperienceSection } from "../components/ExperienceSection"; // Import the new section
-//Fix the FrontEnd
+
 export const Home = () => {
   return (
     <main className="relative">
