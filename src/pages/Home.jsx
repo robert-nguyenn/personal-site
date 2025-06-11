@@ -27,5 +27,3 @@ export const Home = () => {
     </main>
   )
 }
-
-//Fix
