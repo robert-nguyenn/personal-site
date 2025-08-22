@@ -2,16 +2,6 @@
 
 A modern, responsive portfolio website showcasing skills, experience, and projects. Built with performance and user experience in mind to catch the attention of top tech recruiters.
 
-## 🌐 Links
-
-- **[Live Demo](https://your-live-demo-url.com)**
-- **[LinkedIn Profile](https://www.linkedin.com/in/your-profile/)**
-- **[GitHub Profile](https://github.com/your-username)**
-
-## 📸 Preview
-
-![Portfolio Screenshot](./path-to-your-screenshot.png)
-
 ## ✨ Features
 
 - **Responsive Design** - Fully responsive layout optimized for all devices
