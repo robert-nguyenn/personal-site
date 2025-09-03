@@ -2,7 +2,7 @@
 
 > **"Code is poetry; performance is the rhythm that makes it sing."**
 
-A cutting-edge, performance-optimized portfolio engineered to demonstrate full-stack capabilities and modern development practices. Built with scalability, accessibility, and user experience at its core—designed to catch the attention of **FAANG and top-tier tech companies**.
+A cutting-edge, performance-optimized portfolio engineered to demonstrate full-stack capabilities and modern development practices. Built with scalability, accessibility, and user experience at its core.
 
 ---
 
